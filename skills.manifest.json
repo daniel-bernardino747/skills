@@ -1,0 +1,11 @@
+{
+  "scope": "global",
+  "agents": [
+    "claude-code",
+    "cursor",
+    "gemini-cli",
+    "antigravity",
+    "opencode"
+  ],
+  "sources": []
+}

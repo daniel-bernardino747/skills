@@ -1,0 +1,26 @@
+{
+  "name": "@daniel-bernardino747/skills",
+  "version": "0.1.0",
+  "description": "Minhas agent skills e o instalador do meu ambiente de agentes",
+  "type": "module",
+  "license": "MIT",
+  "author": "Daniel Bernardino",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daniel-bernardino747/skills.git"
+  },
+  "bin": {
+    "skills": "./scripts/install.mjs"
+  },
+  "scripts": {
+    "setup": "node scripts/install.mjs",
+    "setup:mine": "node scripts/install.mjs --mine",
+    "list": "node scripts/install.mjs --list"
+  },
+  "dependencies": {
+    "skills": "^1.5.20"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
