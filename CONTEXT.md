@@ -53,3 +53,50 @@ _Avoid_: publicar, lançar, estabilizar
 Passar a usar a skill de outra pessoa como está, adicionando-a ao Manifesto. Distinto de
 **Inspirar**, que produz uma Skill Derivada em `lab/`.
 _Avoid_: importar, instalar
+
+### Ressurgimento
+
+Vocabulário do `dont-let-me-forget`. Ver
+[ADR-0004](./docs/adr/0004-hook-instalado-pelo-setup-excecao-ao-so-skills.md).
+
+**Acervo**:
+O diretório único onde vivem as Notas, fora deste repositório. `notas/` é a fila viva,
+`archive/` é o terminal. Um só, global — o projeto de origem é metadado da Nota, não
+endereço dela.
+_Avoid_: vault, base, second brain
+
+**Nota**:
+Um arquivo Markdown do Acervo: prosa em português, frontmatter operacional, e uma linha
+obrigatória de `Por que guardei`. Escrita para o meu olho, não para o do agente.
+_Avoid_: card, item, entrada
+
+**Escada**:
+1d → 3d → 1w → 2w → 4w. O intervalo conta do dia da revisão, nunca do vencimento.
+_Avoid_: repetição espaçada, SRS, agendamento
+
+**Parede**:
+O 4w. Ali a Nota só pode ser agida ou arquivada — adiar deixa de ser uma opção, e o script
+recusa. É o que impede o Acervo de virar fila de dívida.
+_Avoid_: prazo, expiração, deadline
+
+**Adiar / Agir / Arquivar**:
+As três saídas de uma revisão. `Agir` exige um artefato nomeável — o que passou a existir e
+não existia antes; sem isso não foi agir, foi adiar. `Arquivar` exige um motivo. Nenhuma
+delas apaga: exclusão é sempre manual.
+_Avoid_: concluir, fechar, deletar, snooze
+
+**Carona**:
+A instrução em linguagem natural pendurada numa das três saídas — *"chega, mas extrai o
+tópico 5 numa nota nova"*. O agente executa antes de registrar a saída. É o que torna a
+revisão um diálogo, e não um formulário.
+_Avoid_: comando, opção, flag
+
+**Ressuscitar**:
+Trazer uma Nota do `archive/` de volta à fila, em 1d. Só o passeio faz isso, e só depois de
+um sorteio — recorrência conquistada, não concedida.
+_Avoid_: reabrir, desarquivar, restaurar
+
+**Passeio**:
+Listar e sortear. O sorteio corre sobre o Acervo inteiro, `archive/` incluído, e ignora a
+Escada. É o canal de serendipidade; a revisão é o canal com prazo.
+_Avoid_: busca, navegação, explorar
