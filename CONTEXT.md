@@ -20,6 +20,11 @@ _Avoid_: skill de produção, skill publicada
 Skill em `lab/` — tentativa em andamento, não instalada por padrão.
 _Avoid_: rascunho, WIP, protótipo
 
+**Skill em Teste**:
+Skill em `preview/` — eu já uso, e quero que outros experimentem antes de eu chamar de
+estável. Instalada por padrão, e é o único conjunto que eu compartilho.
+_Avoid_: beta, release candidate, skill pública
+
 **Nota de Análise**:
 Arquivo em `analysis/` descrevendo a skill de outra pessoa: o que ela faz bem e um `status`
 que diz o que fazer a respeito. Contém prosa minha, nunca o texto original.
@@ -46,8 +51,14 @@ Um agente de código que recebe as skills instaladas (`claude-code`, `cursor`, �
 _Avoid_: cliente, editor, IDE
 
 **Promover**:
-Mover um Experimento de `lab/` para `skills/`, tornando-o instalado por padrão.
+Mover uma skill um degrau acima: `lab/` → `preview/` → `skills/`. Cada degrau é um `git mv`,
+e descer também. Só o último degrau significa que eu confio nela.
 _Avoid_: publicar, lançar, estabilizar
+
+**Abrir para Teste**:
+Mover um Experimento de `lab/` para `preview/` e entregar a alguém o comando gerado por
+`install.mjs --share`. É a única forma de uma skill minha sair daqui.
+_Avoid_: publicar, distribuir, lançar beta
 
 **Adotar**:
 Passar a usar a skill de outra pessoa como está, adicionando-a ao Manifesto. Distinto de

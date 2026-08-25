@@ -21,6 +21,7 @@ npx github:daniel-bernardino747/skills
 | pasta | o que é | instalado? |
 |---|---|---|
 | [`skills/`](./skills/) | minhas skills estáveis | sim, por padrão |
+| [`preview/`](./preview/) | em teste com outras pessoas | sim, por padrão |
 | [`lab/`](./lab/) | experimentos e tentativas | não, só com `-s <nome>` |
 | [`analysis/`](./analysis/) | notas sobre skills de terceiros | não, não são skills |
 | [`docs/adr/`](./docs/adr/) | as decisões e o porquê | — |
@@ -32,12 +33,13 @@ O motivo está no [ADR-0001](./docs/adr/0001-skills-de-terceiros-por-referencia.
 ## Comandos
 
 ```bash
-node scripts/install.mjs               # minhas skills estáveis + tudo do manifesto
+node scripts/install.mjs               # skills/ + preview/ + tudo do manifesto
 node scripts/install.mjs --mine        # só as minhas (loop de desenvolvimento)
 node scripts/install.mjs -s <nome>     # uma específica, inclusive de lab/
 node scripts/install.mjs -a claude-code   # sobrescreve os agentes-alvo
 node scripts/install.mjs --list        # o que existe, sem instalar
 node scripts/install.mjs --dry-run     # os comandos que seriam rodados
+node scripts/install.mjs --share       # o comando para os outros instalarem preview/
 ```
 
 Por baixo é o [CLI `skills`](https://github.com/vercel-labs/skills), que copia cada skill
@@ -73,6 +75,25 @@ git mv lab/minha-skill skills/minha-skill  # quando ganhar confiança
 `SKILL.md` é escrito **em inglês** — é o modelo que lê, e o `description` casa melhor com o
 resto do ecossistema instalado ao lado. README, ADRs e notas de análise ficam em português,
 porque o leitor sou eu.
+
+## Compartilhar uma skill para teste
+
+`git mv lab/minha-skill preview/minha-skill`, e depois:
+
+```bash
+node scripts/install.mjs --share
+```
+
+Ele imprime os comandos prontos, a partir do que existe de fato em `preview/`:
+
+```bash
+npx skills add https://github.com/daniel-bernardino747/skills/tree/main/preview -s '*' -g -y
+npx skills use https://github.com/daniel-bernardino747/skills/tree/main/preview --skill <nome>
+```
+
+O endereço aponta para a **subpasta**, não para a raiz — com isso, o `-l` de quem recebeu o
+link mostra só o que está em teste, e o meu `lab/` não aparece. Por que subpasta e não
+branch está no [ADR-0005](./docs/adr/0005-preview-por-subpasta-nao-por-branch.md).
 
 ## Convenções
 

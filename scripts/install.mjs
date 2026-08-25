@@ -5,12 +5,13 @@
  * (https://github.com/vercel-labs/skills).
  *
  * Uso:
- *   node scripts/install.mjs                 minhas skills estáveis + tudo do manifesto
+ *   node scripts/install.mjs                 skills/ + preview/ + tudo do manifesto
  *   node scripts/install.mjs --mine          só as minhas (loop de desenvolvimento)
  *   node scripts/install.mjs -s <nome>...    só as skills nomeadas (inclusive de lab/)
  *   node scripts/install.mjs -a <agente>...  sobrescreve os agentes do manifesto
  *   node scripts/install.mjs --list          mostra o que existe, sem instalar
  *   node scripts/install.mjs --dry-run       imprime os comandos, sem executar
+ *   node scripts/install.mjs --share         o comando para os outros instalarem preview/
  */
 
 import { spawnSync } from 'node:child_process';
@@ -21,13 +22,17 @@ import { fileURLToPath } from 'node:url';
 
 const REPO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const STABLE_DIR = join(REPO_ROOT, 'skills');
+const PREVIEW_DIR = join(REPO_ROOT, 'preview');
 const LAB_DIR = join(REPO_ROOT, 'lab');
 const MANIFEST_PATH = join(REPO_ROOT, 'skills.manifest.json');
+
+/** O repositório, do jeito que um terceiro o endereça. Ver ADR-0005. */
+const REPO_PUBLICO = 'https://github.com/daniel-bernardino747/skills';
 
 // ---------------------------------------------------------------- argumentos
 
 function parseArgs(argv) {
-  const opts = { mine: false, list: false, dryRun: false, skills: [], agents: [] };
+  const opts = { mine: false, list: false, dryRun: false, share: false, skills: [], agents: [] };
 
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i];
@@ -44,6 +49,9 @@ function parseArgs(argv) {
         break;
       case '--dry-run':
         opts.dryRun = true;
+        break;
+      case '--share':
+        opts.share = true;
         break;
       case '-s':
       case '--skill':
@@ -71,12 +79,13 @@ function usage() {
       '',
       'Instala as skills deste repositório e as fontes do manifesto.',
       '',
-      '  node scripts/install.mjs                 minhas skills estáveis + manifesto',
+      '  node scripts/install.mjs                 skills/ + preview/ + manifesto',
       '  node scripts/install.mjs --mine          só as minhas (loop de desenvolvimento)',
       '  node scripts/install.mjs -s <nome>...    só as skills nomeadas (inclusive lab/)',
       '  node scripts/install.mjs -a <agente>...  sobrescreve os agentes do manifesto',
       '  node scripts/install.mjs --list          mostra o que existe, sem instalar',
       '  node scripts/install.mjs --dry-run       imprime os comandos, sem executar',
+      '  node scripts/install.mjs --share         o comando para os outros instalarem preview/',
       '',
     ].join('\n')
   );
@@ -155,6 +164,7 @@ function resolveSkillsCli() {
 
 function buildTasks(manifest, opts) {
   const stable = localSkills(STABLE_DIR);
+  const preview = localSkills(PREVIEW_DIR);
   const lab = localSkills(LAB_DIR);
   const wanted = opts.skills;
   const tasks = [];
@@ -165,6 +175,8 @@ function buildTasks(manifest, opts) {
 
   if (wanted.length === 0) {
     addLocal(STABLE_DIR, 'skills/ (minhas)', stable);
+    // preview/ também é minha, e vai junto: pedir teste do que eu não rodo é ruim.
+    addLocal(PREVIEW_DIR, 'preview/ (em teste)', preview);
     if (!opts.mine) {
       for (const entry of manifest.sources) {
         tasks.push({ label: entry.source, source: entry.source, skills: entry.skills });
@@ -173,11 +185,12 @@ function buildTasks(manifest, opts) {
     return tasks;
   }
 
-  // Com -s: cada nome é resolvido em skills/, depois lab/, depois no manifesto.
+  // Com -s: resolve em skills/, depois preview/, depois lab/, depois no manifesto.
   const unresolved = new Set(wanted);
   const take = (names) => names.filter((name) => unresolved.delete(name));
 
   addLocal(STABLE_DIR, 'skills/ (minhas)', take(stable));
+  addLocal(PREVIEW_DIR, 'preview/ (em teste)', take(preview));
   addLocal(LAB_DIR, 'lab/ (experimentos)', take(lab));
 
   if (!opts.mine) {
@@ -193,7 +206,7 @@ function buildTasks(manifest, opts) {
   if (unresolved.size > 0) {
     die(
       `Não encontrei: ${[...unresolved].join(', ')}\n` +
-        '  Procurei em skills/, lab/ e nas fontes do manifesto.\n' +
+        '  Procurei em skills/, preview/, lab/ e nas fontes do manifesto.\n' +
         '  Use --list para ver o que existe.'
     );
   }
@@ -219,6 +232,7 @@ function list(manifest) {
     console.log(`\n${title}\n${names.length ? names.map((n) => `  · ${n}`).join('\n') : '  (vazio)'}`);
 
   show('skills/ — estáveis, instaladas por padrão', localSkills(STABLE_DIR));
+  show('preview/ — em teste, instaladas por padrão e compartilháveis', localSkills(PREVIEW_DIR));
   show('lab/ — experimentos, só com -s <nome>', localSkills(LAB_DIR));
 
   const sources = manifest.sources.map(
@@ -227,6 +241,36 @@ function list(manifest) {
   show('manifesto — fontes de terceiros', sources);
 
   console.log(`\nagentes-alvo: ${manifest.agents.join(', ')}\n`);
+}
+
+/**
+ * O comando que eu entrego para outra pessoa. Aponta para a subpasta `preview/`
+ * no GitHub, e não para a raiz: assim o CLI só enxerga o que está em teste, e
+ * `lab/` não aparece no `-l` de quem recebeu o link. Ver ADR-0005.
+ */
+function share() {
+  const nomes = localSkills(PREVIEW_DIR);
+
+  if (nomes.length === 0) {
+    console.log(
+      '\npreview/ está vazia — não há o que compartilhar.\n' +
+        '  Mova uma skill para lá primeiro:  git mv lab/<nome> preview/<nome>\n'
+    );
+    return;
+  }
+
+  const fonte = `${REPO_PUBLICO}/tree/main/preview`;
+
+  console.log(`\n${nomes.length} skill(s) em teste: ${nomes.join(', ')}`);
+  console.log('\nInstalar todas:\n');
+  console.log(`  npx skills add ${fonte} -s '*' -g -y`);
+  console.log('\nInstalar uma:\n');
+  for (const nome of nomes) console.log(`  npx skills add ${fonte} -s ${nome} -g -y`);
+  console.log('\nExperimentar sem instalar nada:\n');
+  for (const nome of nomes) console.log(`  npx skills use ${fonte} --skill ${nome}`);
+  console.log(
+    '\nSem -a, o CLI pergunta quais agentes. Para um alvo fixo, acrescente -a claude-code.\n'
+  );
 }
 
 // ---------------------------------------------------------------------- main
@@ -245,12 +289,17 @@ if (opts.list) {
   process.exit(0);
 }
 
+if (opts.share) {
+  share();
+  process.exit(0);
+}
+
 const tasks = buildTasks(manifest, opts);
 
 if (tasks.length === 0) {
   console.log(
     '\nNada para instalar.\n' +
-      '  skills/ está vazia e o manifesto não declara fontes.\n' +
+      '  skills/ e preview/ estão vazias e o manifesto não declara fontes.\n' +
       '  Crie uma skill em skills/<nome>/SKILL.md ou adicione uma fonte ao manifesto.\n'
   );
   process.exit(0);
