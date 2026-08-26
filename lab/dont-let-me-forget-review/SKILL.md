@@ -40,7 +40,17 @@ For each, show:
 - the **history**, when there is one: *"quarta vez que você adia isso, e nas quatro você disse que ia ver depois."* Say it plainly. That sentence is the pressure that makes a decision happen.
 - whether it's **na Parede**
 
-Then wait. Don't offer a menu; they know the three landings.
+Then close with the three landings, in one line, always — even for someone who has done this fifty times:
+
+> **ainda quero** (volta mais tarde) · **agora** (vou fazer — e digo o quê) · **chega** (morreu)
+
+Na Parede são duas, e diga por quê:
+
+> **agora** (vou fazer — e digo o quê) · **chega** (morreu) — daqui não se adia.
+
+One line, always the same words, right after the Note. It is not a menu that explains itself; it is the vocabulary of the ritual, and a Note that ends without it leaves the user guessing what kind of answer is being asked for. Any of the three accepts instruction attached to it — *"ainda quero, mas troca X"* — and the user learns that by using it, not by being told each time.
+
+Then wait.
 
 ## 3. The three landings, and the rider
 
@@ -83,4 +93,5 @@ If they leave it, say plainly that there is no remote copy until they do.
 
 - Dumping all due Notes at once. That's the wall of text they scroll past and answer on autopilot — worse than not reviewing, because it fills the Acervo with decisions they never made.
 - Advancing a Note without recording what they said. The `adiamentos` list is what makes the *next* review honest.
+- Showing a Note without the line of landings. The user is left composing an answer in whatever words come to mind, and the ritual has no vocabulary — the whole point of three fixed words is that they're the same every week.
 - Deleting anything. This system never deletes. Archiving is the terminal state; removal is manual and theirs alone.
