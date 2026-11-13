@@ -66,8 +66,20 @@ behind it — a value, a property, a pattern. If none exists, offer exactly two 
 
 Paraphrase every Fonte in your own words. Quote nothing beyond a short term of art.
 
+**Demo.** When the Princípio is something you can see (appearance or motion), write its demo
+at `$SRC/demos/<ID>.html` in the shape FORMAT.md defines, **before** asking for the verdict.
+Build on the existing demos and the kit; don't restyle. Show it:
+
+```bash
+node "$REPO/scripts/build-canon-site.mjs" --serve   # run in background; http://127.0.0.1:4173/<ID>.html
+```
+
+Open it in the built-in browser and check that it renders before pointing the user at it. If
+the user edits the Regra, update the demo to the new values. On **descarta**, delete the
+demo. A `manual` or non-visual Princípio has no demo.
+
 **Done when** every survivor is approved, set to manual, or discarded — and the user has
-seen the final text of each one kept.
+seen the final text of each one kept, and its demo when visual.
 
 ## 4. Conflict
 
@@ -84,9 +96,11 @@ The existing Cânone changes only through this question.
 ## 5. Write
 
 Append kept Princípios under `## Princípios` of their domain file in `$SRC/principles/`,
-replacing `_Nenhum ainda._` if present. Apply any retirement from step 4. Then:
+replacing `_Nenhum ainda._` if present. Apply any retirement from step 4; a retired
+Princípio's demo is deleted. Then:
 
 ```bash
+git -C "$REPO" diff --stat -- "$SRC/principles" "$SRC/demos"
 git -C "$REPO" diff -- "$SRC/principles"
 ```
 
@@ -96,11 +110,12 @@ Show the diff.
 
 Propose, and run each only on the user's yes:
 
-1. **Commit** — `dont-mess-up-ui: <n> princípios de <fonte curta>`.
+1. **Commit** — principles and demos together, `dont-mess-up-ui: <n> princípios de <fonte curta>`.
 2. **Tag** — the next `canon-vN` (`git -C "$REPO" tag -l 'canon-v*'`, highest N + 1; `canon-v1`
    if none). Repos in `gate` mode pin this tag; without a new tag they keep the old ruler.
-   Pushing the tag is a separate yes.
 3. **Reinstall** — `node "$REPO/scripts/install.mjs" -s dont-mess-up-ui`, so the local review
    uses the new Cânone.
+4. **Push** — `main` and the tag, a separate yes. The push publishes the public site
+   (`canon-site` workflow); until then the new Princípios exist only locally.
 
 End with one line: how many Princípios entered, by domain, and how many fell through the sieve.

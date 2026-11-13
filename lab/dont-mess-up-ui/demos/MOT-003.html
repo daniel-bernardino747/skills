@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MOT-003 — demo</title>
+<link rel="stylesheet" href="_kit.css">
+<link rel="stylesheet" href="_squash.css">
+<style>
+  .c .ball { cursor: pointer; }
+  .c .ball.tap { animation: tap 260ms cubic-bezier(.3, 0, .3, 1) 1; }
+  .c .ball.hov:hover, .c .ball.loop { animation: jelly 900ms ease-in-out infinite; }
+  @keyframes tap { 0% { transform: scale(1, 1); } 35% { transform: scale(1.12, .88); } 100% { transform: scale(1, 1); } }
+  @keyframes jelly { 0%, 100% { transform: scale(1, 1); } 25% { transform: scale(1.12, .88); } 60% { transform: scale(.92, 1.08); } }
+</style>
+</head>
+<body>
+<div class="grid">
+  <div class="cell"><h3>No clique, uma vez</h3><span class="tag ok">segue</span>
+    <div class="stage c"><div class="ball" id="tap"></div></div><div class="note">Clique na bola: ela deforma no impacto do clique e volta.</div></div>
+  <div class="cell"><h3>Em hover</h3><span class="tag bad">viola</span>
+    <div class="stage c"><div class="ball hov"></div></div><div class="note">Passe o mouse: gelatina enquanto o cursor estiver em cima.</div></div>
+  <div class="cell"><h3>Em loop</h3><span class="tag bad">viola</span>
+    <div class="stage c"><div class="ball loop"></div></div><div class="note">Gelatina infinita, pedindo atenção o tempo todo.</div></div>
+</div>
+<script>
+  window.DEMO = { controls: [], hint: 'Interaja com as duas primeiras bolas. A terceira se mexe sozinha.' };
+  const tap = document.getElementById('tap');
+  tap.addEventListener('pointerdown', () => { tap.classList.remove('tap'); void tap.offsetWidth; tap.classList.add('tap'); });
+</script>
+<script src="_kit.js"></script>
+</body>
+</html>

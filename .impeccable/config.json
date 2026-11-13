@@ -1,0 +1,50 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "lab/dont-mess-up-ui/demos/_squash.css"
+        ],
+        "createdAt": "2026-11-13T17:22:32.634Z",
+        "reason": "Claude: the 2px border-right is the wall the ball hits in the squash demo (MOT-002/MOT-007), a literal surface, not a card accent"
+      },
+      {
+        "rule": "overused-font",
+        "value": "geist",
+        "createdAt": "2026-11-13T17:53:43.753Z",
+        "reason": "PRODUCT.md brand commitment: Geist and Geist Mono are the user's brand faces (teamdbsolutions.com, Elo); user chose Geist for titles"
+      },
+      {
+        "rule": "overused-font",
+        "value": "geist mono",
+        "createdAt": "2026-11-13T17:53:44.081Z",
+        "reason": "PRODUCT.md brand commitment: Geist Mono is the user's brand mono"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "_site/usar.html"
+        ],
+        "createdAt": "2026-11-13T17:58:25.860Z",
+        "reason": "finish reviewer: dl rows have 14-16px padding at >=560px; at <560px dt intentionally drops its border to sit with its dd"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "mono\",ui-monospace,monospace",
+        "createdAt": "2026-11-13T18:01:32.137Z",
+        "reason": "Claude: parser splits the quoted family \"Geist Mono\"; DESIGN.md typography declares Geist Mono (mono-id, mono-verdict)"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "mono\",ui-monospace,consolas,monospace",
+        "createdAt": "2026-11-13T18:01:32.546Z",
+        "reason": "Claude: parser splits the quoted family \"Geist Mono\"; DESIGN.md typography declares Geist Mono, ui-monospace, Consolas, monospace"
+      }
+    ]
+  }
+}

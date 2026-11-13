@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MOT-010 — demo</title>
+<link rel="stylesheet" href="_kit.css">
+<link rel="stylesheet" href="_anticipation.css">
+<style>
+  @keyframes a-10 { 0% { transform: translateY(0); } 20% { transform: translateY(10px); } 80%, 100% { transform: translateY(-130px); } }
+  @keyframes a-25 { 0% { transform: translateY(0); } 20% { transform: translateY(25px); } 80%, 100% { transform: translateY(-130px); } }
+  @keyframes a-50 { 0% { transform: translateY(0); } 20% { transform: translateY(50px); } 80%, 100% { transform: translateY(-130px); } }
+  @keyframes sa-95 { 0% { transform: scale(1); } 20% { transform: scale(.95); } 80%, 100% { transform: scale(1.5); } }
+  @keyframes sa-80 { 0% { transform: scale(1); } 20% { transform: scale(.8); } 80%, 100% { transform: scale(1.5); } }
+  .run [data-k="a-10"] { animation-name: a-10; } .run [data-k="a-25"] { animation-name: a-25; } .run [data-k="a-50"] { animation-name: a-50; }
+  .run [data-k="sa-95"] { animation-name: sa-95; } .run [data-k="sa-80"] { animation-name: sa-80; }
+</style>
+</head>
+<body>
+<p class="sub">Pulo de 130px</p>
+<div class="grid">
+  <div class="cell"><h3>Desce 10px</h3><span class="tag ok">segue</span>
+    <div class="stage"><div class="ball" data-k="a-10"></div></div><div class="cap">8% do movimento</div></div>
+  <div class="cell"><h3>Desce 25px</h3><span class="tag ok">segue, no limite</span>
+    <div class="stage"><div class="ball" data-k="a-25"></div></div><div class="cap">19% do movimento</div></div>
+  <div class="cell"><h3>Desce 50px</h3><span class="tag bad">viola</span>
+    <div class="stage"><div class="ball" data-k="a-50"></div></div><div class="cap">38% do movimento</div></div>
+</div>
+<p class="sub">Crescer de 1 para 1,5</p>
+<div class="grid">
+  <div class="cell"><h3>Encolhe para 0,95</h3><span class="tag ok">segue</span>
+    <div class="stage"><div class="chip" data-k="sa-95"></div></div><div class="cap">1 → 0.95 → 1.5</div></div>
+  <div class="cell"><h3>Encolhe para 0,8</h3><span class="tag bad">viola</span>
+    <div class="stage"><div class="chip" data-k="sa-80"></div></div><div class="cap">1 → 0.8 → 1.5</div></div>
+</div>
+<script>window.DEMO = { controls: ['replay', 'loop', 'slow'], period: 1300, hint: '500ms no total, 100ms de preparação contrária; só muda o tamanho da preparação.' };</script>
+<script src="_kit.js"></script>
+</body>
+</html>

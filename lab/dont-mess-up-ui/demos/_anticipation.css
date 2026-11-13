@@ -1,0 +1,13 @@
+/* Palco de antecipação: chão a 60px do fundo, para a preparação poder descer. */
+.stage { position: relative; height: 240px; overflow: hidden; }
+.stage::after { content: ""; position: absolute; left: 0; right: 0; bottom: 58px; height: 2px; background: var(--line); }
+.stage.h { height: 120px; }
+.stage.h::after { right: auto; top: 0; bottom: 0; width: 2px; height: auto; left: 22px; }
+.ball { position: absolute; width: 40px; height: 40px; border-radius: 50%; background: var(--object);
+  left: calc(50% - 20px); bottom: 60px; }
+.stage.h .ball { left: 24px; top: 40px; bottom: auto; }
+.chip { position: absolute; left: calc(50% - 50px); top: calc(50% - 30px); width: 100px; height: 60px;
+  border-radius: 12px; background: var(--object); }
+.run [data-k] { animation-duration: calc(500ms * var(--slow)); animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(.3, 0, .2, 1); }
+.clickable { cursor: pointer; }

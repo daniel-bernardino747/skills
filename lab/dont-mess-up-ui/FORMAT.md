@@ -39,6 +39,25 @@ Cada arquivo tem duas seções de nível 2, nesta ordem: `## Princípios` e `## 
 | Exceções | Quando a Regra não se aplica. `—` se nenhuma. |
 | Fonte | URL, assunto ou skill de origem. Sempre paráfrase própria, nunca texto copiado. |
 
+## Demo
+
+Todo Princípio que dá para ver, seja aparência ou movimento, tem uma demo em
+`demos/<ID>.html`. O site público
+([ADR-0008](../../docs/adr/0008-canone-publico-com-uma-demo-por-principio.md)) mostra a demo
+logo abaixo do texto.
+
+- É uma página independente que carrega `_kit.css` e, por último, `_kit.js`. Palcos
+  compartilhados ficam em `_squash.css` e `_anticipation.css`.
+- Os casos ficam lado a lado em `.grid > .cell`. Cada célula tem um `h3`, uma `.tag` (`ok` para
+  "segue", `bad` para "viola", `neutral` para referência) e uma `.cap` com os valores.
+- Pelo menos um caso segue e pelo menos um viola. Valores iguais aos da Regra.
+- As animações rodam só sob `body.run`, com duração `calc(<ms> * var(--slow))`. A barra
+  (Repetir, Loop, Câmera lenta, Congelar) vem de `window.DEMO`, documentado no topo de
+  `_kit.js`. Uma demo só de interação usa `controls: []` e um `hint`.
+- As cores vêm dos tokens do kit, e o texto sobre `--accent` usa `--on-accent`.
+
+Para ver o site localmente: `node scripts/build-canon-site.mjs --serve`.
+
 ## Aposentar
 
 Um Princípio substituído ou abandonado sai de `## Princípios` e vira uma linha em
@@ -48,4 +67,5 @@ Um Princípio substituído ou abandonado sai de `## Princípios` e vira uma linh
 - MOT-002 — Toda animação de UI < 300ms · substituído por MOT-009 em 2026-11-13
 ```
 
-A linha mantém o ID ocupado. O texto completo continua no histórico do git.
+A linha mantém o ID ocupado. O texto completo continua no histórico do git. A demo do
+Princípio aposentado é apagada.

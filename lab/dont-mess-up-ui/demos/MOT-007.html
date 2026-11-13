@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MOT-007 — demo</title>
+<link rel="stylesheet" href="_kit.css">
+<link rel="stylesheet" href="_squash.css">
+</head>
+<body>
+<div class="grid">
+  <div class="cell" style="--sx:1.25;--sy:.78"><h3>Origem no chão</h3><span class="tag ok">segue</span>
+    <div class="stage v"><div class="ghost"></div><div class="ball"></div></div><div class="cap">transform-origin: bottom — achata colada no chão</div></div>
+  <div class="cell" style="--sx:1.25;--sy:.78"><h3>Origem no centro</h3><span class="tag bad">viola</span>
+    <div class="stage v"><div class="ghost oc"></div><div class="ball oc"></div></div><div class="cap">transform-origin: center — descola do chão no impacto</div></div>
+</div>
+<script>window.DEMO = { controls: ['replay', 'loop', 'slow', 'freeze'], period: 1500, hint: 'Use "Congelar no impacto" para ver a diferença parada.' };</script>
+<script src="_kit.js"></script>
+</body>
+</html>

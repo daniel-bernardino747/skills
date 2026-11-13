@@ -1,0 +1,574 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-13T18:02:30.241Z",
+  "title": "Design System: Cânone de UI",
+  "extensions": {
+    "colorMeta": {
+      "ink-floor": {
+        "role": "neutral",
+        "displayName": "Chão de Tinta",
+        "canonical": "#09090b",
+        "tonalRamp": [
+          "oklch(15% 0.003 286)",
+          "oklch(25% 0.003 286)",
+          "oklch(38% 0.006 286)",
+          "oklch(50% 0.006 286)",
+          "oklch(62% 0.006 286)",
+          "oklch(74% 0.006 286)",
+          "oklch(85% 0.006 286)",
+          "oklch(95% 0.003 286)"
+        ]
+      },
+      "chalk": {
+        "role": "neutral",
+        "displayName": "Giz",
+        "canonical": "#fafafa",
+        "tonalRamp": [
+          "oklch(15% 0.003 286)",
+          "oklch(25% 0.003 286)",
+          "oklch(38% 0.006 286)",
+          "oklch(50% 0.006 286)",
+          "oklch(62% 0.006 286)",
+          "oklch(74% 0.006 286)",
+          "oklch(85% 0.006 286)",
+          "oklch(95% 0.003 286)"
+        ]
+      },
+      "muted-zinc": {
+        "role": "neutral",
+        "displayName": "Zinco Abafado",
+        "canonical": "#a1a1aa",
+        "tonalRamp": [
+          "oklch(15% 0.003 286)",
+          "oklch(25% 0.003 286)",
+          "oklch(38% 0.006 286)",
+          "oklch(50% 0.006 286)",
+          "oklch(62% 0.006 286)",
+          "oklch(74% 0.006 286)",
+          "oklch(85% 0.006 286)",
+          "oklch(95% 0.003 286)"
+        ]
+      },
+      "faint-zinc": {
+        "role": "neutral",
+        "displayName": "Zinco Tênue",
+        "canonical": "#8b8b94",
+        "tonalRamp": [
+          "oklch(15% 0.003 286)",
+          "oklch(25% 0.003 286)",
+          "oklch(38% 0.006 286)",
+          "oklch(50% 0.006 286)",
+          "oklch(62% 0.006 286)",
+          "oklch(74% 0.006 286)",
+          "oklch(85% 0.006 286)",
+          "oklch(95% 0.003 286)"
+        ]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Filete",
+        "canonical": "#ffffff1a",
+        "tonalRamp": [
+          "oklch(15% 0.003 286)",
+          "oklch(25% 0.003 286)",
+          "oklch(38% 0.006 286)",
+          "oklch(50% 0.006 286)",
+          "oklch(62% 0.006 286)",
+          "oklch(74% 0.006 286)",
+          "oklch(85% 0.006 286)",
+          "oklch(95% 0.003 286)"
+        ]
+      },
+      "hairline-strong": {
+        "role": "neutral",
+        "displayName": "Filete Forte",
+        "canonical": "#ffffff2e",
+        "tonalRamp": [
+          "oklch(15% 0.003 286)",
+          "oklch(25% 0.003 286)",
+          "oklch(38% 0.006 286)",
+          "oklch(50% 0.006 286)",
+          "oklch(62% 0.006 286)",
+          "oklch(74% 0.006 286)",
+          "oklch(85% 0.006 286)",
+          "oklch(95% 0.003 286)"
+        ]
+      },
+      "surface-veil": {
+        "role": "neutral",
+        "displayName": "Véu",
+        "canonical": "#ffffff08",
+        "tonalRamp": [
+          "oklch(15% 0.003 286)",
+          "oklch(25% 0.003 286)",
+          "oklch(38% 0.006 286)",
+          "oklch(50% 0.006 286)",
+          "oklch(62% 0.006 286)",
+          "oklch(74% 0.006 286)",
+          "oklch(85% 0.006 286)",
+          "oklch(95% 0.003 286)"
+        ]
+      },
+      "surface-veil-2": {
+        "role": "neutral",
+        "displayName": "Véu Aceso",
+        "canonical": "#ffffff0f",
+        "tonalRamp": [
+          "oklch(15% 0.003 286)",
+          "oklch(25% 0.003 286)",
+          "oklch(38% 0.006 286)",
+          "oklch(50% 0.006 286)",
+          "oklch(62% 0.006 286)",
+          "oklch(74% 0.006 286)",
+          "oklch(85% 0.006 286)",
+          "oklch(95% 0.003 286)"
+        ]
+      },
+      "card-veil": {
+        "role": "neutral",
+        "displayName": "Véu de Célula",
+        "canonical": "#ffffff06",
+        "tonalRamp": [
+          "oklch(15% 0.003 286)",
+          "oklch(25% 0.003 286)",
+          "oklch(38% 0.006 286)",
+          "oklch(50% 0.006 286)",
+          "oklch(62% 0.006 286)",
+          "oklch(74% 0.006 286)",
+          "oklch(85% 0.006 286)",
+          "oklch(95% 0.003 286)"
+        ]
+      },
+      "specimen-object": {
+        "role": "neutral",
+        "displayName": "Objeto de Espécime",
+        "canonical": "#e4e4e7",
+        "tonalRamp": [
+          "oklch(15% 0.003 286)",
+          "oklch(25% 0.003 286)",
+          "oklch(38% 0.006 286)",
+          "oklch(50% 0.006 286)",
+          "oklch(62% 0.006 286)",
+          "oklch(74% 0.006 286)",
+          "oklch(85% 0.006 286)",
+          "oklch(95% 0.003 286)"
+        ]
+      },
+      "signal-green": {
+        "role": "primary",
+        "displayName": "Verde Sinal",
+        "canonical": "#00bb7f",
+        "tonalRamp": [
+          "oklch(15% 0.068 163)",
+          "oklch(25% 0.068 163)",
+          "oklch(38% 0.150 163)",
+          "oklch(50% 0.150 163)",
+          "oklch(62% 0.150 163)",
+          "oklch(74% 0.150 163)",
+          "oklch(85% 0.150 163)",
+          "oklch(95% 0.068 163)"
+        ]
+      },
+      "verdict-red": {
+        "role": "secondary",
+        "displayName": "Vermelho Veredito",
+        "canonical": "#ff6568",
+        "tonalRamp": [
+          "oklch(15% 0.090 22)",
+          "oklch(25% 0.090 22)",
+          "oklch(38% 0.200 22)",
+          "oklch(50% 0.200 22)",
+          "oklch(62% 0.200 22)",
+          "oklch(74% 0.200 22)",
+          "oklch(85% 0.200 22)",
+          "oklch(95% 0.090 22)"
+        ]
+      },
+      "caution-amber": {
+        "role": "secondary",
+        "displayName": "Âmbar Cautela",
+        "canonical": "#f5b041",
+        "tonalRamp": [
+          "oklch(15% 0.063 75)",
+          "oklch(25% 0.063 75)",
+          "oklch(38% 0.140 75)",
+          "oklch(50% 0.140 75)",
+          "oklch(62% 0.140 75)",
+          "oklch(74% 0.140 75)",
+          "oklch(85% 0.140 75)",
+          "oklch(95% 0.063 75)"
+        ]
+      },
+      "dot-grid": {
+        "role": "neutral",
+        "displayName": "Pontos da Grade",
+        "canonical": "#ffffff26",
+        "tonalRamp": [
+          "oklch(15% 0.003 286)",
+          "oklch(25% 0.003 286)",
+          "oklch(38% 0.006 286)",
+          "oklch(50% 0.006 286)",
+          "oklch(62% 0.006 286)",
+          "oklch(74% 0.006 286)",
+          "oklch(85% 0.006 286)",
+          "oklch(95% 0.003 286)"
+        ]
+      },
+      "paper-floor-light": {
+        "role": "neutral",
+        "displayName": "Papel Frio (claro)",
+        "canonical": "#f8f8fc",
+        "tonalRamp": [
+          "oklch(15% 0.003 286)",
+          "oklch(25% 0.003 286)",
+          "oklch(38% 0.006 286)",
+          "oklch(50% 0.006 286)",
+          "oklch(62% 0.006 286)",
+          "oklch(74% 0.006 286)",
+          "oklch(85% 0.006 286)",
+          "oklch(95% 0.003 286)"
+        ]
+      },
+      "ink-light": {
+        "role": "neutral",
+        "displayName": "Tinta (claro)",
+        "canonical": "#09090b",
+        "tonalRamp": [
+          "oklch(15% 0.003 286)",
+          "oklch(25% 0.003 286)",
+          "oklch(38% 0.006 286)",
+          "oklch(50% 0.006 286)",
+          "oklch(62% 0.006 286)",
+          "oklch(74% 0.006 286)",
+          "oklch(85% 0.006 286)",
+          "oklch(95% 0.003 286)"
+        ]
+      },
+      "muted-light": {
+        "role": "neutral",
+        "displayName": "Zinco Abafado (claro)",
+        "canonical": "#52525b",
+        "tonalRamp": [
+          "oklch(15% 0.003 286)",
+          "oklch(25% 0.003 286)",
+          "oklch(38% 0.006 286)",
+          "oklch(50% 0.006 286)",
+          "oklch(62% 0.006 286)",
+          "oklch(74% 0.006 286)",
+          "oklch(85% 0.006 286)",
+          "oklch(95% 0.003 286)"
+        ]
+      },
+      "faint-light": {
+        "role": "neutral",
+        "displayName": "Zinco Tênue (claro)",
+        "canonical": "#63636b",
+        "tonalRamp": [
+          "oklch(15% 0.003 286)",
+          "oklch(25% 0.003 286)",
+          "oklch(38% 0.006 286)",
+          "oklch(50% 0.006 286)",
+          "oklch(62% 0.006 286)",
+          "oklch(74% 0.006 286)",
+          "oklch(85% 0.006 286)",
+          "oklch(95% 0.003 286)"
+        ]
+      },
+      "hairline-light": {
+        "role": "neutral",
+        "displayName": "Filete (claro)",
+        "canonical": "#09090b1a",
+        "tonalRamp": [
+          "oklch(15% 0.003 286)",
+          "oklch(25% 0.003 286)",
+          "oklch(38% 0.006 286)",
+          "oklch(50% 0.006 286)",
+          "oklch(62% 0.006 286)",
+          "oklch(74% 0.006 286)",
+          "oklch(85% 0.006 286)",
+          "oklch(95% 0.003 286)"
+        ]
+      },
+      "hairline-strong-light": {
+        "role": "neutral",
+        "displayName": "Filete Forte (claro)",
+        "canonical": "#09090b2e",
+        "tonalRamp": [
+          "oklch(15% 0.003 286)",
+          "oklch(25% 0.003 286)",
+          "oklch(38% 0.006 286)",
+          "oklch(50% 0.006 286)",
+          "oklch(62% 0.006 286)",
+          "oklch(74% 0.006 286)",
+          "oklch(85% 0.006 286)",
+          "oklch(95% 0.003 286)"
+        ]
+      },
+      "specimen-object-light": {
+        "role": "neutral",
+        "displayName": "Objeto de Espécime (claro)",
+        "canonical": "#27272a",
+        "tonalRamp": [
+          "oklch(15% 0.003 286)",
+          "oklch(25% 0.003 286)",
+          "oklch(38% 0.006 286)",
+          "oklch(50% 0.006 286)",
+          "oklch(62% 0.006 286)",
+          "oklch(74% 0.006 286)",
+          "oklch(85% 0.006 286)",
+          "oklch(95% 0.003 286)"
+        ]
+      },
+      "signal-green-text-light": {
+        "role": "primary",
+        "displayName": "Verde Sinal Profundo (claro)",
+        "canonical": "#006c49",
+        "tonalRamp": [
+          "oklch(15% 0.068 163)",
+          "oklch(25% 0.068 163)",
+          "oklch(38% 0.150 163)",
+          "oklch(50% 0.150 163)",
+          "oklch(62% 0.150 163)",
+          "oklch(74% 0.150 163)",
+          "oklch(85% 0.150 163)",
+          "oklch(95% 0.068 163)"
+        ]
+      },
+      "verdict-red-light": {
+        "role": "secondary",
+        "displayName": "Vermelho Veredito (claro)",
+        "canonical": "#c8001a",
+        "tonalRamp": [
+          "oklch(15% 0.090 22)",
+          "oklch(25% 0.090 22)",
+          "oklch(38% 0.200 22)",
+          "oklch(50% 0.200 22)",
+          "oklch(62% 0.200 22)",
+          "oklch(74% 0.200 22)",
+          "oklch(85% 0.200 22)",
+          "oklch(95% 0.090 22)"
+        ]
+      },
+      "caution-amber-light": {
+        "role": "secondary",
+        "displayName": "Âmbar Cautela (claro)",
+        "canonical": "#8a5a00",
+        "tonalRamp": [
+          "oklch(15% 0.063 75)",
+          "oklch(25% 0.063 75)",
+          "oklch(38% 0.140 75)",
+          "oklch(50% 0.140 75)",
+          "oklch(62% 0.140 75)",
+          "oklch(74% 0.140 75)",
+          "oklch(85% 0.140 75)",
+          "oklch(95% 0.063 75)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "O h1 de cada página: título do princípio ou \"Cânone de UI\"."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Nome do domínio na visão geral, com prefixo em mono."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Seções internas como \"Na prática\" e \"No CI\"."
+      },
+      "rule": {
+        "displayName": "Regra",
+        "purpose": "A Regra do princípio, a manchete real da ficha, em até 64ch."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Prosa; o porquê usa 16.5px em zinco abafado."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Texto das pílulas."
+      },
+      "mono-id": {
+        "displayName": "Mono ID",
+        "purpose": "IDs, prefixos, versão e código."
+      },
+      "mono-verdict": {
+        "displayName": "Mono Veredito",
+        "purpose": "Só as etiquetas SEGUE / VIOLA / REFERÊNCIA das demos."
+      }
+    },
+    "shadows": [
+      {
+        "name": "drawer-scrim",
+        "value": "0 0 0 100vmax rgb(0 0 0 / .45)",
+        "purpose": "Escurece o conteúdo quando a gaveta do menu está aberta no mobile. Única sombra do site."
+      }
+    ],
+    "motion": [
+      {
+        "name": "hover-fast",
+        "value": "120ms ease-out",
+        "purpose": "Cor do título na lista e borda do paginador no hover."
+      },
+      {
+        "name": "drawer",
+        "value": "240ms cubic-bezier(.16, 1, .3, 1)",
+        "purpose": "Entrada e saída da gaveta do menu no mobile (transform)."
+      },
+      {
+        "name": "demo-slow",
+        "value": "calc(<ms> * var(--slow))",
+        "purpose": "Toda duração de demo multiplica por --slow, que vale 4 na câmera lenta."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "prefers-reduced-motion: reduce",
+        "purpose": "Desliga as transições do site; demos não tocam sozinhas, só por Repetir ou Loop."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "drawer",
+        "value": "960px"
+      },
+      {
+        "name": "single-column",
+        "value": "560px"
+      }
+    ],
+    "themes": {
+      "default": "dark",
+      "storageKey": "canon-theme",
+      "demoSync": "O site envia { type: \"canon-theme\", theme } a cada iframe.demo ao trocar o tema e quando a demo envia \"canon-demo-ready\"."
+    }
+  },
+  "components": [
+    {
+      "name": "Pílulas da ficha",
+      "kind": "chip",
+      "refersTo": "pill",
+      "description": "Linha abaixo do h1: ID em mono, severidade com ponto, verificação, e a pílula tracejada de princípio novo.",
+      "html": "<div class=\"ds-pills\"><span class=\"ds-pill ds-pill-id\">MOT-008</span><span class=\"ds-pill ds-sev ds-avisa\">avisa</span><span class=\"ds-pill ds-sev ds-bloqueia\">bloqueia</span><span class=\"ds-pill\">código</span><span class=\"ds-pill ds-new\">depois da canon-v2</span></div>",
+      "css": ":host{--bg:#09090b;--fg:#fafafa;--muted:#a1a1aa;--faint:#8b8b94;--line:#ffffff1a;--line-strong:#ffffff2e;--surface:#ffffff08;--surface-2:#ffffff0f;--card:#ffffff06;--object:#e4e4e7;--accent:#00bb7f;--ok:#00bb7f;--bad:#ff6568;--bloqueia:#ff6568;--avisa:#f5b041;--sugere:#a1a1aa} .ds-pills{display:flex;flex-wrap:wrap;gap:6px;background:var(--bg);padding:16px;font-family:\"Geist\",ui-sans-serif,system-ui,sans-serif;} .ds-pill{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:500;line-height:24px;padding:0 10px;border-radius:999px;border:1px solid var(--line-strong);color:var(--muted);white-space:nowrap} .ds-pill-id{font-family:\"Geist Mono\",ui-monospace,Consolas,monospace;color:var(--fg)} .ds-sev::before{content:\"\";width:6px;height:6px;border-radius:50%;background:currentColor} .ds-avisa{color:var(--avisa)} .ds-bloqueia{color:var(--bloqueia)} .ds-new{border-style:dashed}"
+    },
+    {
+      "name": "Etiqueta de veredito",
+      "kind": "chip",
+      "refersTo": "verdict-tag-segue",
+      "description": "Etiqueta mono em caixa alta das células de demo; a única cor saturada da bancada.",
+      "html": "<div class=\"ds-row\"><span class=\"ds-tag ds-ok\">segue</span><span class=\"ds-tag ds-bad\">viola</span><span class=\"ds-tag ds-neutral\">referência</span></div>",
+      "css": ":host{--bg:#09090b;--fg:#fafafa;--muted:#a1a1aa;--faint:#8b8b94;--line:#ffffff1a;--line-strong:#ffffff2e;--surface:#ffffff08;--surface-2:#ffffff0f;--card:#ffffff06;--object:#e4e4e7;--accent:#00bb7f;--ok:#00bb7f;--bad:#ff6568;--bloqueia:#ff6568;--avisa:#f5b041;--sugere:#a1a1aa} .ds-row{display:flex;gap:8px;background:var(--bg);padding:16px} .ds-tag{display:inline-block;font:600 11px/20px \"Geist Mono\",ui-monospace,Consolas,monospace;letter-spacing:.06em;text-transform:uppercase;padding:0 8px;border-radius:999px;border:1px solid currentColor} .ds-ok{color:var(--ok)} .ds-bad{color:var(--bad)} .ds-neutral{color:var(--faint)}"
+    },
+    {
+      "name": "Controles de demo",
+      "kind": "button",
+      "refersTo": "demo-control",
+      "description": "Barra de pílulas da bancada; o estado ligado inverte para Giz sobre Chão.",
+      "html": "<div class=\"ds-bar\"><button class=\"ds-ctl\" type=\"button\">Repetir</button><button class=\"ds-ctl\" type=\"button\" aria-pressed=\"true\">Loop</button><button class=\"ds-ctl\" type=\"button\" aria-pressed=\"false\">Câmera lenta 4×</button></div>",
+      "css": ":host{--bg:#09090b;--fg:#fafafa;--muted:#a1a1aa;--faint:#8b8b94;--line:#ffffff1a;--line-strong:#ffffff2e;--surface:#ffffff08;--surface-2:#ffffff0f;--card:#ffffff06;--object:#e4e4e7;--accent:#00bb7f;--ok:#00bb7f;--bad:#ff6568;--bloqueia:#ff6568;--avisa:#f5b041;--sugere:#a1a1aa} .ds-bar{display:flex;gap:6px;flex-wrap:wrap;background:var(--bg);padding:16px} .ds-ctl{font-family:\"Geist\",ui-sans-serif,system-ui,sans-serif;font-size:13px;font-weight:500;padding:5px 13px;border-radius:999px;border:1px solid var(--line-strong);background:transparent;color:var(--fg);cursor:pointer} .ds-ctl:hover{background:var(--card);border-color:var(--muted)} .ds-ctl:focus-visible{outline:2px solid var(--fg);outline-offset:2px} .ds-ctl[aria-pressed=\"true\"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}"
+    },
+    {
+      "name": "Botão de tema",
+      "kind": "button",
+      "refersTo": "theme-toggle",
+      "description": "Círculo de 34px no cabeçalho do menu; sol no claro, lua no escuro.",
+      "html": "<div class=\"ds-wrap\"><button class=\"ds-theme\" type=\"button\" aria-label=\"Alternar tema claro e escuro\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4\"/></svg></button></div>",
+      "css": ":host{--bg:#09090b;--fg:#fafafa;--muted:#a1a1aa;--faint:#8b8b94;--line:#ffffff1a;--line-strong:#ffffff2e;--surface:#ffffff08;--surface-2:#ffffff0f;--card:#ffffff06;--object:#e4e4e7;--accent:#00bb7f;--ok:#00bb7f;--bad:#ff6568;--bloqueia:#ff6568;--avisa:#f5b041;--sugere:#a1a1aa} .ds-wrap{background:var(--bg);padding:16px} .ds-theme{display:grid;place-items:center;width:34px;height:34px;border-radius:999px;cursor:pointer;background:transparent;color:var(--muted);border:1px solid var(--line)} .ds-theme:hover{color:var(--fg);border-color:var(--line-strong)} .ds-theme:focus-visible{outline:2px solid var(--fg);outline-offset:2px} .ds-theme svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}"
+    },
+    {
+      "name": "Menu lateral",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Wordmark com ponto verde, grupo de domínio com prefixo em mono, itens com ID em mono e página atual acesa.",
+      "html": "<nav class=\"ds-side\"><a class=\"ds-brand\" href=\"#\">Cânone<span class=\"ds-dot\"></span></a><p class=\"ds-title\">Movimento <span>MOT-</span></p><a class=\"ds-link\" href=\"#\"><span class=\"ds-id\">MOT-007</span>Squash ancorado no ponto de contato</a><a class=\"ds-link\" href=\"#\" aria-current=\"page\"><span class=\"ds-id\">MOT-008</span>Antecipação vai no sentido contrário</a><a class=\"ds-link\" href=\"#\"><span class=\"ds-id\">MOT-009</span>Antecipação é curta</a></nav>",
+      "css": ":host{--bg:#09090b;--fg:#fafafa;--muted:#a1a1aa;--faint:#8b8b94;--line:#ffffff1a;--line-strong:#ffffff2e;--surface:#ffffff08;--surface-2:#ffffff0f;--card:#ffffff06;--object:#e4e4e7;--accent:#00bb7f;--ok:#00bb7f;--bad:#ff6568;--bloqueia:#ff6568;--avisa:#f5b041;--sugere:#a1a1aa} .ds-side{width:288px;padding:20px 14px;background:var(--bg);border-right:1px solid var(--line);font-size:14px;font-family:\"Geist\",ui-sans-serif,system-ui,sans-serif;} .ds-brand{display:inline-flex;align-items:center;gap:7px;font-weight:700;font-size:17px;letter-spacing:-.01em;color:var(--fg);text-decoration:none;margin:0 8px 16px} .ds-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);margin-top:2px} .ds-title{display:flex;justify-content:space-between;margin:0 0 6px;padding:0 8px;font-size:13px;font-weight:600;color:var(--fg)} .ds-title span{font:500 12px \"Geist Mono\",ui-monospace,Consolas,monospace;color:var(--faint)} .ds-link{display:flex;gap:10px;padding:6px 8px;border-radius:8px;color:var(--muted);text-decoration:none;line-height:1.4} .ds-link:hover,.ds-link[aria-current=\"page\"]{color:var(--fg);background:var(--surface-2)} .ds-link:focus-visible{outline:2px solid var(--fg);outline-offset:2px} .ds-id{flex:none;width:60px;font:500 12px/1.65 \"Geist Mono\",ui-monospace,Consolas,monospace;color:var(--faint)} .ds-link[aria-current=\"page\"] .ds-id{color:var(--fg)}"
+    },
+    {
+      "name": "Cabeça da ficha",
+      "kind": "custom",
+      "refersTo": "pill",
+      "description": "Assinatura: trilha, h1 Geist bold, pílulas, a Regra em corpo grande e o porquê em zinco abafado. Nada acima do título.",
+      "html": "<article class=\"ds-sheet\"><nav class=\"ds-crumbs\"><a href=\"#\">Movimento</a> / MOT-008</nav><h1>Antecipação vai no sentido contrário ao movimento</h1><div class=\"ds-pills\"><span class=\"ds-pill ds-pill-id\">MOT-008</span><span class=\"ds-pill\">código</span></div><p class=\"ds-rule\">Quando uma animação tem uma fase de preparação, ela desloca o elemento no sentido oposto ao do movimento principal.</p><p class=\"ds-why\">O recuo é o que faz o movimento parecer ter impulso próprio.</p></article>",
+      "css": ":host{--bg:#09090b;--fg:#fafafa;--muted:#a1a1aa;--faint:#8b8b94;--line:#ffffff1a;--line-strong:#ffffff2e;--surface:#ffffff08;--surface-2:#ffffff0f;--card:#ffffff06;--object:#e4e4e7;--accent:#00bb7f;--ok:#00bb7f;--bad:#ff6568;--bloqueia:#ff6568;--avisa:#f5b041;--sugere:#a1a1aa} .ds-sheet{background:var(--bg);color:var(--fg);padding:32px;max-width:760px;font-family:\"Geist\",ui-sans-serif,system-ui,sans-serif;line-height:1.65} .ds-crumbs{font-size:14px;color:var(--faint);margin:0 0 20px} .ds-crumbs a{color:var(--muted);text-decoration:none} .ds-crumbs a:hover{color:var(--fg)} .ds-sheet h1{font-size:clamp(32px,4.2vw,48px);font-weight:700;line-height:1.08;letter-spacing:-.035em;margin:0 0 18px;text-wrap:balance} .ds-pills{display:flex;gap:6px} .ds-pill{font-size:12.5px;font-weight:500;line-height:24px;padding:0 10px;border-radius:999px;border:1px solid var(--line-strong);color:var(--muted)} .ds-pill-id{font-family:\"Geist Mono\",ui-monospace,Consolas,monospace;color:var(--fg)} .ds-rule{font-size:clamp(19px,1.7vw,22px);line-height:1.5;font-weight:450;letter-spacing:-.01em;margin:32px 0 14px;max-width:64ch;text-wrap:pretty} .ds-why{color:var(--muted);margin:0;max-width:64ch;font-size:16.5px}"
+    },
+    {
+      "name": "Célula de demo",
+      "kind": "card",
+      "refersTo": "demo-cell",
+      "description": "Assinatura da bancada: título, veredito, palco com o objeto de espécime sobre um chão, legenda em mono.",
+      "html": "<div class=\"ds-cell\"><h3>Preparação contrária</h3><span class=\"ds-tag\">segue</span><div class=\"ds-stage\"><div class=\"ds-ball\"></div></div><div class=\"ds-cap\">0 → +10 → -130</div></div>",
+      "css": ":host{--bg:#09090b;--fg:#fafafa;--muted:#a1a1aa;--faint:#8b8b94;--line:#ffffff1a;--line-strong:#ffffff2e;--surface:#ffffff08;--surface-2:#ffffff0f;--card:#ffffff06;--object:#e4e4e7;--accent:#00bb7f;--ok:#00bb7f;--bad:#ff6568;--bloqueia:#ff6568;--avisa:#f5b041;--sugere:#a1a1aa} .ds-cell{display:flex;flex-direction:column;width:220px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;color:var(--fg);font-family:\"Geist\",ui-sans-serif,system-ui,sans-serif;font-size:14px} .ds-cell h3{font-size:13.5px;font-weight:600;margin:0 0 6px} .ds-tag{align-self:flex-start;margin-bottom:10px;font:600 11px/20px \"Geist Mono\",ui-monospace,Consolas,monospace;letter-spacing:.06em;text-transform:uppercase;padding:0 8px;border-radius:999px;border:1px solid currentColor;color:var(--ok)} .ds-stage{position:relative;height:140px;border-bottom:2px solid var(--line)} .ds-ball{position:absolute;width:40px;height:40px;border-radius:50%;background:var(--object);left:calc(50% - 20px);bottom:0} .ds-cap{font:12px/1.45 \"Geist Mono\",ui-monospace,Consolas,monospace;color:var(--muted);margin-top:8px}"
+    },
+    {
+      "name": "Cartão do paginador",
+      "kind": "card",
+      "refersTo": "pager-card",
+      "description": "Navegação entre princípios: contêiner de 10px com filete que se fortalece no hover.",
+      "html": "<nav class=\"ds-pager\"><a href=\"#\"><span>Anterior</span>MOT-007 · Squash ancorado no ponto de contato</a><a class=\"ds-next\" href=\"#\"><span>Próximo</span>MOT-009 · Antecipação é curta</a></nav>",
+      "css": ":host{--bg:#09090b;--fg:#fafafa;--muted:#a1a1aa;--faint:#8b8b94;--line:#ffffff1a;--line-strong:#ffffff2e;--surface:#ffffff08;--surface-2:#ffffff0f;--card:#ffffff06;--object:#e4e4e7;--accent:#00bb7f;--ok:#00bb7f;--bad:#ff6568;--bloqueia:#ff6568;--avisa:#f5b041;--sugere:#a1a1aa} .ds-pager{display:grid;grid-template-columns:1fr 1fr;gap:12px;background:var(--bg);padding:16px;font-family:\"Geist\",ui-sans-serif,system-ui,sans-serif;} .ds-pager a{display:block;border:1px solid var(--line);border-radius:10px;padding:14px 16px;color:var(--fg);text-decoration:none;font-size:14.5px;font-weight:500;transition:border-color 120ms ease-out} .ds-pager a:hover{border-color:var(--line-strong)} .ds-pager a:focus-visible{outline:2px solid var(--fg);outline-offset:2px} .ds-pager span{display:block;font-size:12.5px;font-weight:400;color:var(--faint);margin-bottom:2px} .ds-next{text-align:right}"
+    }
+  ],
+  "narrative": {
+    "northStar": "A Ficha de Régua",
+    "overview": "Cada página de princípio é uma ficha de régua: a Regra é a manchete, a demo é a bancada onde ela se prova, e os fatos (sinais no código, exceções, fonte) vêm depois, como notas de rodapé de um laudo. O sistema é uma extensão da marca pessoal já estabelecida (teamdbsolutions.com e Elo): chão quase preto, texto quase branco, Geist e Geist Mono, pílulas, e uma grade de pontos discreta que só aparece no topo de cada página.\n\nA densidade é de documento técnico calmo. A cor é quase toda neutra; o pouco de cor que existe carrega veredito, nunca decoração. Verde significa \"segue\", vermelho significa \"viola\" ou \"bloqueia\", âmbar significa \"avisa\". Os links, o foco e a seleção usam a própria cor do texto, para que o verde nunca seja confundido com \"clicável\". A profundidade vem de véus translúcidos sobre o chão e de filetes de 1px, não de sombras.\n\nO sistema recusa o template genérico de documentação (prosa cinza com um callout colorido). A Regra é corpo grande na largura de leitura, não um bloco destacado.",
+    "keyCharacteristics": [
+      "Tema escuro por padrão; tema claro só por escolha do leitor, salva no navegador (`canon-theme`).",
+      "Cor como veredito: verde, vermelho e âmbar só aparecem com significado de \"segue\", \"viola/bloqueia\" e \"avisa\".",
+      "Geist para texto e títulos, Geist Mono para IDs, valores e rótulos curtos.",
+      "Duas formas: contêiner com raio de 10px e pílula de 999px.",
+      "Plano: véus translúcidos e filetes de 1px no lugar de sombras.",
+      "As demos são parte do mesmo sistema e seguem o tema do site via `postMessage`."
+    ],
+    "rules": [
+      {
+        "name": "The Verde é Veredito Rule",
+        "section": "colors",
+        "body": "O verde só diz \"segue\" (ou é o ponto da marca). Nunca é cor de link, foco, seleção, botão de navegação ou ornamento. Se um elemento verde não significa \"segue\" e não é o ponto da marca nem um espécime de demo, ele está errado."
+      },
+      {
+        "name": "The Foco é Texto Rule",
+        "section": "colors",
+        "body": "Links, anel de foco (2px sólido, afastado 2px) e seleção usam a cor do texto. A interação é sinalizada por sublinhado e contraste, não por matiz."
+      },
+      {
+        "name": "The Dois Temas, Um Mapa Rule",
+        "section": "colors",
+        "body": "Todo token existe nos dois temas com o mesmo nome; o tema troca valores, não papéis. As demos repetem o mesmo mapa em `_kit.css`."
+      },
+      {
+        "name": "The Nada Acima do Título Rule",
+        "section": "typography",
+        "body": "Nenhum rótulo, sobretítulo ou etiqueta fica acima do h1. A trilha \"Domínio / ID\" é navegação, não rótulo; ID, severidade e verificação vão em pílulas abaixo do título."
+      },
+      {
+        "name": "The Mono é Dado Rule",
+        "section": "typography",
+        "body": "Geist Mono só para IDs, valores, código e etiquetas de veredito. Prosa e títulos nunca em mono."
+      },
+      {
+        "name": "The Filete, Não Sombra Rule",
+        "section": "elevation",
+        "body": "Separação é filete de 1px (`hairline`); ênfase é o filete forte. Sombras são exclusivas do scrim da gaveta e dos espécimes de demo que imitam um produto (um modal, por exemplo)."
+      }
+    ],
+    "dos": [
+      "**Do** reservar o verde (#00bb7f) para \"segue\", o ponto da marca e espécimes de demo.",
+      "**Do** usar a cor do texto em links (sublinhado de 1px em filete forte, deslocado 3px), anel de foco (2px, afastado 2px) e seleção (22%).",
+      "**Do** usar raio de 10px em contêineres e 999px em controles e etiquetas.",
+      "**Do** definir todo token nos dois temas e manter o tema escuro como padrão, com a escolha do claro salva em `canon-theme` e repassada às demos por `postMessage`.",
+      "**Do** usar Geist Mono para IDs, valores e código, e Geist para todo o resto.",
+      "**Do** separar com filetes de 1px e véus translúcidos em vez de sombras.",
+      "**Do** manter transições de interface curtas (120ms ease-out no hover, 240ms `cubic-bezier(.16, 1, .3, 1)` na gaveta) e desligá-las com `prefers-reduced-motion`."
+    ],
+    "donts": [
+      "**Don't** usar verde em links, foco, botões de navegação ou ornamento.",
+      "**Don't** colocar rótulo, sobretítulo ou etiqueta acima do h1.",
+      "**Don't** transformar a Regra num callout com fundo colorido; ela é corpo grande na largura de leitura.",
+      "**Don't** estender a grade de pontos além do topo da página.",
+      "**Don't** pôr sombra de elevação em superfícies do site.",
+      "**Don't** usar vermelho ou âmbar fora de veredito e severidade."
+    ]
+  }
+}

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MOT-008 — demo</title>
+<link rel="stylesheet" href="_kit.css">
+<link rel="stylesheet" href="_anticipation.css">
+<style>
+  @keyframes up-none { 0% { transform: translateY(0); } 60%, 100% { transform: translateY(-130px); } }
+  @keyframes up-same { 0% { transform: translateY(0); } 20% { transform: translateY(-10px); } 80%, 100% { transform: translateY(-130px); } }
+  @keyframes up-opp  { 0% { transform: translateY(0); } 20% { transform: translateY(10px); } 80%, 100% { transform: translateY(-130px); } }
+  @keyframes x-none { 0% { transform: translateX(0); } 60%, 100% { transform: translateX(200px); } }
+  @keyframes x-same { 0% { transform: translateX(0); } 20% { transform: translateX(12px); } 80%, 100% { transform: translateX(200px); } }
+  @keyframes x-opp  { 0% { transform: translateX(0); } 20% { transform: translateX(-12px); } 80%, 100% { transform: translateX(200px); } }
+  @keyframes s-none { 0% { transform: scale(1); } 60%, 100% { transform: scale(1.5); } }
+  @keyframes s-same { 0% { transform: scale(1); } 20% { transform: scale(1.05); } 80%, 100% { transform: scale(1.5); } }
+  @keyframes s-opp  { 0% { transform: scale(1); } 20% { transform: scale(.95); } 80%, 100% { transform: scale(1.5); } }
+  .run [data-k$="-none"] { animation-timing-function: cubic-bezier(.2, .8, .2, 1); }
+  .run [data-k="up-none"] { animation-name: up-none; } .run [data-k="up-same"] { animation-name: up-same; } .run [data-k="up-opp"] { animation-name: up-opp; }
+  .run [data-k="x-none"] { animation-name: x-none; } .run [data-k="x-same"] { animation-name: x-same; } .run [data-k="x-opp"] { animation-name: x-opp; }
+  .run [data-k="s-none"] { animation-name: s-none; } .run [data-k="s-same"] { animation-name: s-same; } .run [data-k="s-opp"] { animation-name: s-opp; }
+</style>
+</head>
+<body>
+<p class="sub">Pular: a preparação desce 10px antes de subir 130px</p>
+<div class="grid">
+  <div class="cell"><h3>Sem antecipação</h3><span class="tag neutral">referência</span>
+    <div class="stage"><div class="ball" data-k="up-none"></div></div><div class="cap">0 → -130</div></div>
+  <div class="cell"><h3>Preparação no mesmo sentido</h3><span class="tag bad">viola</span>
+    <div class="stage"><div class="ball" data-k="up-same"></div></div><div class="cap">0 → -10 → -130</div></div>
+  <div class="cell"><h3>Preparação contrária</h3><span class="tag ok">segue</span>
+    <div class="stage"><div class="ball" data-k="up-opp"></div></div><div class="cap">0 → +10 → -130</div></div>
+</div>
+<p class="sub">Sair pela direita: recua 12px antes de avançar 200px</p>
+<div class="grid">
+  <div class="cell"><h3>Sem antecipação</h3><span class="tag neutral">referência</span>
+    <div class="stage h"><div class="ball" data-k="x-none"></div></div><div class="cap">0 → 200</div></div>
+  <div class="cell"><h3>Preparação no mesmo sentido</h3><span class="tag bad">viola</span>
+    <div class="stage h"><div class="ball" data-k="x-same"></div></div><div class="cap">0 → 12 → 200</div></div>
+  <div class="cell"><h3>Preparação contrária</h3><span class="tag ok">segue</span>
+    <div class="stage h"><div class="ball" data-k="x-opp"></div></div><div class="cap">0 → -12 → 200</div></div>
+</div>
+<p class="sub">Crescer: encolhe para 0,95 antes de crescer para 1,5</p>
+<div class="grid">
+  <div class="cell"><h3>Sem antecipação</h3><span class="tag neutral">referência</span>
+    <div class="stage"><div class="chip" data-k="s-none"></div></div><div class="cap">1 → 1.5</div></div>
+  <div class="cell"><h3>Preparação no mesmo sentido</h3><span class="tag bad">viola</span>
+    <div class="stage"><div class="chip" data-k="s-same"></div></div><div class="cap">1 → 1.05 → 1.5</div></div>
+  <div class="cell"><h3>Preparação contrária</h3><span class="tag ok">segue</span>
+    <div class="stage"><div class="chip" data-k="s-opp"></div></div><div class="cap">1 → 0.95 → 1.5</div></div>
+</div>
+<script>window.DEMO = { controls: ['replay', 'loop', 'slow'], period: 1300, hint: 'Todas duram 500ms; a preparação ocupa os primeiros 100ms. Use a câmera lenta.' };</script>
+<script src="_kit.js"></script>
+</body>
+</html>

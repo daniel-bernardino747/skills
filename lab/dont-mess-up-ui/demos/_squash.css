@@ -1,0 +1,33 @@
+/* Palco de squash and stretch: bola que cai (.v), bate na parede (.h) ou fica no centro (.c).
+   Cada célula define --sx e --sy, a escala no keyframe de impacto. */
+.stage { position: relative; height: 190px; overflow: hidden; }
+.stage.v { border-bottom: 2px solid var(--fg); }
+.stage.h { border-right: 2px solid var(--fg); }
+.stage.c { display: grid; place-items: center; }
+.ball, .ghost { position: absolute; width: 56px; height: 56px; border-radius: 50%; }
+.v .ball, .v .ghost { left: 50%; bottom: 0; margin-left: -28px; transform-origin: 50% 100%; }
+.h .ball, .h .ghost { right: 0; top: 50%; margin-top: -28px; transform-origin: 100% 50%; }
+.c .ball, .c .ghost { left: 50%; top: 50%; margin: -28px 0 0 -28px; transform-origin: 50% 50%; }
+.ball.oc, .ghost.oc { transform-origin: 50% 50%; }
+.ball { background: var(--object); }
+.ghost { border: 2px dashed var(--muted); opacity: 0; }
+
+.run .v .ball { animation: drop calc(900ms * var(--slow)) linear both; }
+.run .h .ball { animation: hit calc(900ms * var(--slow)) linear both; }
+.freeze .ball { animation: none !important; transform: scale(var(--sx), var(--sy)); }
+.freeze .ghost { opacity: .8; }
+
+@keyframes drop {
+  0%   { transform: translateY(-140px) scale(1, 1); animation-timing-function: cubic-bezier(.5, 0, 1, 1); }
+  40%  { transform: translateY(0) scale(1, 1); animation-timing-function: cubic-bezier(0, 0, .3, 1); }
+  52%  { transform: translateY(0) scale(var(--sx), var(--sy)); animation-timing-function: cubic-bezier(.3, 0, .3, 1); }
+  72%  { transform: translateY(-34px) scale(1, 1); animation-timing-function: cubic-bezier(.5, 0, 1, 1); }
+  100% { transform: translateY(0) scale(1, 1); }
+}
+@keyframes hit {
+  0%   { transform: translateX(-150px) scale(1, 1); animation-timing-function: cubic-bezier(.5, 0, 1, 1); }
+  40%  { transform: translateX(0) scale(1, 1); animation-timing-function: cubic-bezier(0, 0, .3, 1); }
+  52%  { transform: translateX(0) scale(var(--sx), var(--sy)); animation-timing-function: cubic-bezier(.3, 0, .3, 1); }
+  72%  { transform: translateX(-36px) scale(1, 1); animation-timing-function: cubic-bezier(.5, 0, 1, 1); }
+  100% { transform: translateX(0) scale(1, 1); }
+}
