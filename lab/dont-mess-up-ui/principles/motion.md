@@ -68,6 +68,51 @@ Princípios do Cânone. Formato em [FORMAT.md](../FORMAT.md). Escrito por
 - **Exceções:** —
 - **Fonte:** assunto: squash and stretch — inferência minha a partir de https://frameanim.org.in/tutorials/squash-and-stretch
 
+### MOT-008 — Antecipação vai no sentido contrário ao movimento
+- **Regra:** quando uma animação tem uma fase de preparação antes do movimento principal, essa fase desloca, escala ou gira o elemento no sentido oposto ao do movimento principal: desce antes de subir (`y` > 0 antes de `y` < 0), encolhe antes de crescer (`scale` < 1 antes de > 1), recua antes de avançar. Uma preparação no mesmo sentido do movimento principal viola.
+- **Por quê:** o recuo é o que faz o movimento parecer ter impulso próprio; uma preparação no mesmo sentido lê como engasgo ou atraso.
+- **Sinais no código:** keyframes ou sequências (`@keyframes`, arrays de `animate`, timelines GSAP) em que o primeiro passo intermediário altera `translate`/`x`/`y`, `scale` ou `rotate` antes do valor principal; compare o sinal da variação do primeiro passo com o sinal da variação até o pico.
+- **Severidade:** avisa
+- **Verificação:** código
+- **Exceções:** —
+- **Fonte:** https://www.animatorisland.com/10-second-tip-always-anticipate/ e https://www.artemisiacollege.com/feeds/blog/anticipation-animation — paráfrase
+
+### MOT-009 — Antecipação é curta
+- **Regra:** a fase de preparação (do início até o extremo contrário da antecipação) dura no máximo 100ms e no máximo 25% da duração total da animação.
+- **Por quê:** antecipação é para ser sentida, não vista. Quando fica longa, o usuário espera o elemento "pegar impulso" e lê aquilo como lentidão.
+- **Sinais no código:** em keyframes com antecipação (ver MOT-008), o percentual do keyframe de extremo contrário (ex.: `20%`, `offset: 0.2`, `times: [0, 0.2, …]`) multiplicado pela duração; preparação feita como passo separado de timeline/sequência com duração própria > 100ms.
+- **Severidade:** avisa
+- **Verificação:** código
+- **Exceções:** —
+- **Fonte:** https://www.animatorisland.com/10-second-tip-always-anticipate/ — paráfrase; os limites de 100ms e 25% são inferência minha a partir de "um ou dois frames já se sentem"
+
+### MOT-010 — Antecipação é pequena
+- **Regra:** a amplitude da preparação é no máximo 20% da amplitude do movimento principal, medidas a partir do valor inicial. Em escala, a preparação também não passa de 5% do valor inicial (entre 0,95 e 1,05).
+- **Por quê:** antecipação grande vira um segundo movimento: o elemento parece ir e voltar em vez de pegar impulso.
+- **Sinais no código:** em keyframes com antecipação (ver MOT-008), compare o deslocamento até o extremo contrário com o deslocamento até o pico: `translateY(10px)` → `translateY(-130px)` = 8%. Em escala, um extremo contrário fora de 0,95–1,05.
+- **Severidade:** avisa
+- **Verificação:** código
+- **Exceções:** —
+- **Fonte:** https://www.animatorisland.com/10-second-tip-always-anticipate/ e https://www.artemisiacollege.com/feeds/blog/anticipation-animation — paráfrase; os limites de 20% e 5% são inferência minha
+
+### MOT-011 — Animação disparada por input começa sem delay
+- **Regra:** uma animação disparada por um gesto do usuário (clique, press, tecla, soltar um drag) começa no mesmo frame do evento, com `delay` 0. A antecipação faz parte da duração da animação, não é uma espera antes dela.
+- **Por quê:** um atraso entre o gesto e a primeira mudança visível lê como interface travada, e a antecipação vira desculpa para essa espera.
+- **Sinais no código:** `animation-delay`, `transition-delay`, `delay:` (Framer Motion, GSAP, WAAPI) > 0 em animações ligadas a `onClick`/`onPointerDown`/`:active`/`whileTap`/handlers de teclado; `setTimeout` antes de disparar a animação dentro do handler.
+- **Severidade:** avisa
+- **Verificação:** código
+- **Exceções:** escalonamento (stagger) de itens de uma lista, desde que o primeiro item comece sem delay; tooltip ou preview em hover com atraso intencional para não abrir por acidente.
+- **Fonte:** https://www.artemisiacollege.com/feeds/blog/anticipation-animation — paráfrase (telegraph longo demais deixa a interação lenta); a forma "delay 0 no input" é inferência minha
+
+### MOT-012 — O press é a antecipação
+- **Regra:** quando um elemento tem estado de press (`:active`, `whileTap`, escala < 1 no `pointerdown`) e se move ao ser solto ou clicado, o movimento parte da pose de press direto para o movimento principal. Não há uma segunda preparação no sentido contrário depois do clique.
+- **Por quê:** o afundar do press já carregou o impulso; uma nova preparação depois de soltar faz o elemento hesitar duas vezes antes de responder.
+- **Sinais no código:** elemento com `:active`/`whileTap`/`pointerdown` que reduz escala e, no mesmo elemento, uma animação disparada por `onClick`/`pointerup` cujo primeiro passo intermediário é uma antecipação (ver MOT-008).
+- **Severidade:** avisa
+- **Verificação:** código
+- **Exceções:** quando quem se move não é o elemento pressionado (ex.: clicar o botão faz outro ícone saltar), a antecipação no outro elemento segue MOT-008 normalmente.
+- **Fonte:** assunto: anticipation — inferência minha a partir de https://www.animatorisland.com/10-second-tip-always-anticipate/ e https://www.artemisiacollege.com/feeds/blog/anticipation-animation
+
 ## Aposentados
 
 _Nenhum._
