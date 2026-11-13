@@ -1,6 +1,10 @@
 # Publica o site do Cânone de UI no GitHub Pages (ADR-0008).
-# Sempre gera da main, inclusive quando o gatilho é uma tag canon-v*: o site mostra o Cânone
-# vigente e marca o que ainda não entrou em nenhuma tag.
+# Sempre gera da main: o site mostra o Cânone vigente e marca o que ainda não entrou em nenhuma tag.
+#
+# O ambiente github-pages só aceita deploy da main. Por isso um push de tag canon-v* não publica
+# por conta própria: ele só redispara este workflow na main, para o site passar a marcar a tag nova.
+# A concorrência é por ref, para a execução da tag nunca cancelar a da main quando as duas
+# chegam juntas (push da main seguido do push da tag, como faz o capture).
 name: canon-site
 
 on:
@@ -20,16 +24,26 @@ permissions:
   id-token: write
 
 concurrency:
-  group: canon-site
+  group: canon-site-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
+  redispatch:
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - run: gh workflow run canon-site --ref main --repo "$GITHUB_REPOSITORY"
+        env:
+          GH_TOKEN: ${{ github.token }}
+
   build:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: main
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
