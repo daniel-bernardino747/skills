@@ -1,0 +1,187 @@
+# Reusable workflow: revisa o PR contra o Cânone da skill dont-mess-up-ui.
+#
+# No projeto, .github/workflows/dont-mess-up-ui.yml:
+#
+#   name: dont-mess-up-ui
+#   on:
+#     pull_request:
+#   permissions:
+#     contents: read
+#     pull-requests: write
+#   jobs:
+#     ui:
+#       uses: daniel-bernardino747/skills/.github/workflows/dont-mess-up-ui.yml@canon-v1
+#       with:
+#         mode: report        # report (padrão, nunca falha) | gate (falha com ≥1 "bloqueia")
+#       secrets: inherit      # ANTHROPIC_API_KEY ou CLAUDE_CODE_OAUTH_TOKEN
+#
+# O @ref do `uses:` fixa ao mesmo tempo este workflow e o Cânone. `@main` acompanha a régua
+# mais nova; repos em `gate` fixam uma tag canon-vN. Ver docs/adr/0007.
+
+name: dont-mess-up-ui
+
+on:
+  workflow_call:
+    inputs:
+      mode:
+        description: "report (comenta, nunca falha) | gate (falha com ≥1 violação 'bloqueia')"
+        type: string
+        default: report
+      model:
+        description: Modelo usado na revisão.
+        type: string
+        default: claude-sonnet-5-5
+    secrets:
+      ANTHROPIC_API_KEY:
+        required: false
+      CLAUDE_CODE_OAUTH_TOKEN:
+        required: false
+
+jobs:
+  review:
+    if: github.event.pull_request
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      pull-requests: write
+    env:
+      MODE: ${{ inputs.mode }}
+    steps:
+      - name: Validar entradas e credencial
+        id: pre
+        env:
+          HAS_KEY: ${{ secrets.ANTHROPIC_API_KEY != '' }}
+          HAS_OAUTH: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN != '' }}
+        run: |
+          case "$MODE" in report|gate) ;; *) echo "::error::mode deve ser 'report' ou 'gate', veio '$MODE'"; exit 1 ;; esac
+          if [ "$HAS_KEY" = true ] || [ "$HAS_OAUTH" = true ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            # PRs de fork não recebem secrets; repo sem secret configurado cai aqui também.
+            echo "::warning::Sem ANTHROPIC_API_KEY nem CLAUDE_CODE_OAUTH_TOKEN — revisão pulada."
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Checkout do projeto
+        if: steps.pre.outputs.run == 'true'
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+
+      - name: Resolver a ref do Cânone
+        if: steps.pre.outputs.run == 'true'
+        id: canon
+        env:
+          WF_REF: ${{ job.workflow_ref }}
+          WF_SHA: ${{ job.workflow_sha }}
+        run: |
+          # job.workflow_ref = owner/repo/.github/workflows/x.yml@ref (runner ≥ 2.334)
+          if [ -n "$WF_REF" ] && [ -n "$WF_SHA" ]; then
+            echo "repo=$(echo "$WF_REF" | cut -d/ -f1-2)" >> "$GITHUB_OUTPUT"
+            echo "sha=$WF_SHA" >> "$GITHUB_OUTPUT"
+          else
+            echo "::warning::Runner sem job.workflow_ref; usando o Cânone de main."
+            echo "repo=daniel-bernardino747/skills" >> "$GITHUB_OUTPUT"
+            echo "sha=main" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Checkout do Cânone
+        if: steps.pre.outputs.run == 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ steps.canon.outputs.repo }}
+          ref: ${{ steps.canon.outputs.sha }}
+          path: .dmui-canon
+          sparse-checkout: |
+            skills/dont-mess-up-ui
+            preview/dont-mess-up-ui
+            lab/dont-mess-up-ui
+
+      - name: Instalar a skill
+        if: steps.pre.outputs.run == 'true'
+        run: |
+          # A skill pode estar em qualquer degrau; promover não quebra repos fixados.
+          for tier in skills preview lab; do
+            if [ -f ".dmui-canon/$tier/dont-mess-up-ui/SKILL.md" ]; then
+              mkdir -p ~/.claude/skills
+              cp -r ".dmui-canon/$tier/dont-mess-up-ui" ~/.claude/skills/
+              echo "Skill encontrada em $tier/"
+              break
+            fi
+          done
+          rm -rf .dmui-canon
+          test -f ~/.claude/skills/dont-mess-up-ui/SKILL.md || { echo "::error::dont-mess-up-ui não encontrada no repo de skills"; exit 1; }
+
+      - uses: actions/setup-node@v4
+        if: steps.pre.outputs.run == 'true'
+        with:
+          node-version: 22
+
+      - name: Revisar
+        if: steps.pre.outputs.run == 'true'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OAUTH: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          MODEL: ${{ inputs.model }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          npm install -g @anthropic-ai/claude-code
+          # A API key tem prioridade; o token OAuth só entra quando ela não existe.
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            unset ANTHROPIC_API_KEY
+            export CLAUDE_CODE_OAUTH_TOKEN="$OAUTH"
+          fi
+          claude -p "/dont-mess-up-ui --ci --base $BASE_SHA" \
+            --model "$MODEL" \
+            --allowedTools "Read,Grep,Glob,Bash(git diff:*),Bash(git merge-base:*),Bash(git ls-files:*),Bash(git log:*)" \
+            > "$RUNNER_TEMP/report.md"
+          cat "$RUNNER_TEMP/report.md"
+
+      - name: Ler o resultado
+        if: steps.pre.outputs.run == 'true'
+        id: result
+        run: |
+          line=$(grep -o '<!-- dont-mess-up-ui:result .* -->' "$RUNNER_TEMP/report.md" | tail -1 || true)
+          json=${line#'<!-- dont-mess-up-ui:result '}
+          json=${json%' -->'}
+          if blocks=$(printf '%s' "$json" | jq -er '.bloqueia | numbers' 2>/dev/null); then
+            echo "blocks=$blocks" >> "$GITHUB_OUTPUT"
+            echo "valid=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::warning::Relatório sem linha de resultado válida."
+            echo "valid=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Comentar no PR
+        if: steps.pre.outputs.run == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+        run: |
+          # Um comentário só, atualizado a cada push.
+          marker='<!-- dont-mess-up-ui:comment -->'
+          body="$marker"$'\n'"$(cat "$RUNNER_TEMP/report.md")"
+          id=$(gh api "repos/$REPO/issues/$PR/comments" --paginate \
+                 --jq ".[] | select(.body | startswith(\"$marker\")) | .id" | head -1)
+          if [ -n "$id" ]; then
+            gh api -X PATCH "repos/$REPO/issues/comments/$id" -f body="$body" > /dev/null
+          else
+            gh api -X POST "repos/$REPO/issues/$PR/comments" -f body="$body" > /dev/null
+          fi
+
+      - name: Gate
+        if: steps.pre.outputs.run == 'true' && inputs.mode == 'gate'
+        env:
+          VALID: ${{ steps.result.outputs.valid }}
+          BLOCKS: ${{ steps.result.outputs.blocks }}
+        run: |
+          if [ "$VALID" != true ]; then
+            echo "::error::Sem resultado legível, o gate não pode decidir."; exit 1
+          fi
+          if [ "$BLOCKS" -gt 0 ]; then
+            echo "::error::$BLOCKS violação(ões) 'bloqueia'. Ver o comentário no PR."; exit 1
+          fi
+          echo "Nenhuma violação 'bloqueia'."

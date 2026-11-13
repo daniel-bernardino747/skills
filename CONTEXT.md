@@ -111,3 +111,28 @@ _Avoid_: reabrir, desarquivar, restaurar
 Listar e sortear. O sorteio corre sobre o Acervo inteiro, `archive/` incluído, e ignora a
 Escada. É o canal de serendipidade; a revisão é o canal com prazo.
 _Avoid_: busca, navegação, explorar
+
+### Cânone de UI
+
+Vocabulário do `dont-mess-up-ui`. Ver
+[ADR-0007](./docs/adr/0007-canone-de-ui-mora-na-skill-e-e-fixado-por-tag.md).
+
+**Cânone**:
+O conjunto dos meus Princípios de UI, UX e motion, em `dont-mess-up-ui/principles/`. Pessoal
+e global, igual em todo projeto. A régua de um projeto específico é o design system dele, não
+o Cânone.
+_Avoid_: guideline, style guide, design system
+
+**Princípio**:
+Uma entrada do Cânone, com ID (`UI-`/`UX-`/`MOT-`) e uma Regra verificável no diff. Só entra
+pela captura, com a minha confirmação. Paráfrase minha, nunca texto copiado.
+_Avoid_: regra, lint, heurística, best practice
+
+**Severidade**:
+`bloqueia` · `avisa` · `sugere`. Só `bloqueia` falha o CI, e só em modo `gate`.
+_Avoid_: nível, prioridade, gravidade
+
+**Verificação**:
+`código` (a revisora julga) ou `manual` (vira checklist quando o diff toca o assunto). Um
+conceito que não vira nenhuma das duas é descartado na captura.
+_Avoid_: tipo, categoria
