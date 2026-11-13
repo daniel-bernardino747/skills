@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UX-001 — demo</title>
+<link rel="stylesheet" href="_kit.css">
+<style>
+  .stage { position: relative; min-height: 210px; display: flex; flex-direction: column; justify-content: flex-end; }
+  form { display: flex; flex-direction: column; gap: 6px; }
+  label { font-size: 12.5px; color: var(--muted); }
+  input { font: 14px/1 "Geist", ui-sans-serif, sans-serif; color: var(--fg); background: var(--bg);
+    border: 1px solid var(--line-strong); border-radius: 8px; padding: 9px 10px; width: 100%; }
+  input[aria-invalid="true"] { border-color: var(--bad); }
+  .err { color: var(--bad); font-size: 12.5px; min-height: 18px; margin: 0; }
+  .b { font: 600 13px/1 "Geist", ui-sans-serif, sans-serif; border-radius: 8px; padding: 10px 13px; cursor: pointer;
+    background: var(--accent); color: var(--on-accent); border: 0; margin-top: 4px; }
+  .toast { position: absolute; top: 0; left: 0; right: 0; padding: 8px 10px; border-radius: 8px; font-size: 12.5px;
+    background: color-mix(in srgb, var(--bad) 14%, var(--bg)); color: var(--fg); border: 1px solid var(--bad);
+    opacity: 0; transition: opacity 150ms ease-out; pointer-events: none; }
+  .toast.show { opacity: 1; }
+</style>
+</head>
+<body>
+<div class="grid">
+  <div class="cell"><h3>Erro colado no campo</h3><span class="tag ok">segue</span>
+    <div class="stage"><form data-mode="inline" novalidate>
+      <label for="e1">E-mail</label>
+      <input id="e1" value="ana@" aria-describedby="e1-err" autocomplete="off">
+      <p class="err" id="e1-err"></p>
+      <button class="b">Entrar</button></form></div>
+    <div class="cap">mensagem sob o input · aria-describedby</div></div>
+  <div class="cell"><h3>Erro só no toast do topo</h3><span class="tag bad">viola</span>
+    <div class="stage"><div class="toast" role="status"></div><form data-mode="toast" novalidate>
+      <label for="e2">E-mail</label>
+      <input id="e2" value="ana@" autocomplete="off">
+      <p class="err"></p>
+      <button class="b">Entrar</button></form></div>
+    <div class="cap">toast longe do campo · campo sem sinal</div></div>
+</div>
+<script>
+  window.DEMO = { controls: [], hint: 'Clique em Entrar nos dois formulários e repare para onde seu olho vai.' };
+  const msg = 'Falta o domínio do e-mail, como ana@empresa.com';
+  document.querySelectorAll('form').forEach((f) => f.addEventListener('submit', (ev) => {
+    ev.preventDefault();
+    const input = f.querySelector('input');
+    const ok = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(input.value);
+    if (f.dataset.mode === 'inline') {
+      input.setAttribute('aria-invalid', String(!ok));
+      f.querySelector('.err').textContent = ok ? '' : msg;
+    } else {
+      const t = f.parentElement.querySelector('.toast');
+      t.textContent = ok ? '' : msg;
+      t.classList.toggle('show', !ok);
+      clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove('show'), 2500);
+    }
+  }));
+</script>
+<script src="_kit.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UI-002 — demo</title>
+<link rel="stylesheet" href="_kit.css">
+<style>
+  .stage { min-height: 150px; display: grid; place-items: center; }
+  .view { width: 100%; border: 1px solid var(--line-strong); border-radius: 10px; padding: 14px; background: var(--bg);
+    transition: filter 240ms ease-out; }
+  .squint .view { filter: blur(5px); }
+  .view .t { font-weight: 600; font-size: 13.5px; margin: 0 0 4px; }
+  .view .d { color: var(--muted); font-size: 12.5px; margin: 0 0 12px; }
+  .view .lines span { display: block; height: 6px; border-radius: 3px; background: var(--line-strong); margin: 0 0 6px; }
+  .view .lines span:nth-child(2) { width: 70%; }
+  .row { display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap; }
+  .row.start { justify-content: flex-start; }
+  .b { font: 600 13px/1 "Geist", ui-sans-serif, sans-serif; border-radius: 8px; padding: 9px 13px; cursor: pointer;
+    border: 1px solid var(--line-strong); background: transparent; color: var(--fg); }
+  .b.primary { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+  .b.ghost { border-color: transparent; color: var(--muted); }
+  .gap { height: 14px; }
+</style>
+</head>
+<body>
+<div class="kit-bar"><button type="button" id="squint" aria-pressed="false">Apertar os olhos</button></div>
+<p class="kit-hint">Borre as vistas e veja o que salta primeiro em cada uma.</p>
+<div class="grid">
+  <div class="cell"><h3>Uma primária</h3><span class="tag ok">segue</span>
+    <div class="stage"><div class="view"><p class="t">Excluir projeto?</p><p class="d">Os arquivos vão para a lixeira.</p>
+      <div class="row"><button class="b ghost">Cancelar</button><button class="b">Arquivar</button><button class="b primary">Excluir</button></div></div></div>
+    <div class="cap">1 primary · 1 outline · 1 ghost</div></div>
+  <div class="cell"><h3>Duas primárias</h3><span class="tag bad">viola</span>
+    <div class="stage"><div class="view"><p class="t">Excluir projeto?</p><p class="d">Os arquivos vão para a lixeira.</p>
+      <div class="row"><button class="b ghost">Cancelar</button><button class="b primary">Arquivar</button><button class="b primary">Excluir</button></div></div></div>
+    <div class="cap">2 primary com ações diferentes</div></div>
+  <div class="cell"><h3>Mesma ação repetida</h3><span class="tag ok">segue</span>
+    <div class="stage"><div class="view"><p class="t">Organize seu time</p>
+      <div class="row start"><button class="b primary">Criar conta</button><button class="b ghost">Ver planos</button></div>
+      <div class="gap"></div><div class="lines"><span></span><span></span></div><div class="gap"></div>
+      <div class="row start"><button class="b primary">Criar conta</button></div></div></div>
+    <div class="cap">2 primary, mesma ação · exceção</div></div>
+</div>
+<script>
+  window.DEMO = { controls: [] };
+  const sq = document.getElementById('squint');
+  sq.addEventListener('click', () => {
+    const on = sq.getAttribute('aria-pressed') !== 'true';
+    sq.setAttribute('aria-pressed', String(on));
+    document.body.classList.toggle('squint', on);
+  });
+</script>
+<script src="_kit.js"></script>
+</body>
+</html>

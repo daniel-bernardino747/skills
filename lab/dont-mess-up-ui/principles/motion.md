@@ -113,6 +113,24 @@ Princípios do Cânone. Formato em [FORMAT.md](../FORMAT.md). Escrito por
 - **Exceções:** quando quem se move não é o elemento pressionado (ex.: clicar o botão faz outro ícone saltar), a antecipação no outro elemento segue MOT-008 normalmente.
 - **Fonte:** assunto: anticipation — inferência minha a partir de https://www.animatorisland.com/10-second-tip-always-anticipate/ e https://www.artemisiacollege.com/feeds/blog/anticipation-animation
 
+### MOT-013 — Um chamariz animado por vez
+- **Regra:** numa vista, no máximo um elemento tem animação de chamar atenção ativa ao mesmo tempo. Isso vale para animação contínua ou repetida que não comunica progresso: pulse, bounce, ping, glow, wiggle, badge pulsante. Quando um segundo chamariz precisa aparecer, o primeiro para.
+- **Por quê:** o movimento puxa o olho involuntariamente. Com dois ou mais loops na tela, nenhum deles indica para onde olhar, e a vista fica agitada.
+- **Sinais no código:** dois ou mais elementos da mesma vista com `animation: … infinite`, `animation-iteration-count` > 1, `repeat: Infinity` (Framer Motion), `repeat: -1` (GSAP), ou com as classes `animate-pulse` / `animate-bounce` / `animate-ping` (Tailwind).
+- **Severidade:** avisa
+- **Verificação:** código
+- **Exceções:** indicadores de carregamento e progresso (spinner, shimmer de skeleton, barra indeterminada) não contam, porque sinalizam atividade e não pedem ação.
+- **Fonte:** https://uxmag.com/articles/why-skilled-ux-designers-are-like-magicians — paráfrase (atenção tem um único foco, e o movimento é a ferramenta mais forte para puxá-lo)
+
+### MOT-014 — Movimento vindo da borda só para o que é crítico
+- **Regra:** toast, banner ou snackbar que entra com deslocamento (slide a partir da borda, `translate`/`x`/`y` ≠ 0 no estado inicial) fica reservado a eventos que exigem atenção imediata: perda de conexão, falha ao salvar, sessão expirando, erro que bloqueia o fluxo. Esses usam o token de perigo ou de alerta. Confirmações e mensagens informativas ("Salvo", "Copiado", "Enviado") entram sem deslocamento, só com fade de no máximo 150ms.
+- **Por quê:** movimento na periferia é o sinal mais forte para tirar o olho do que a pessoa está fazendo. Gasto em "Salvo!", ele ensina a ignorar a borda, e o aviso de conexão caída passa despercebido.
+- **Sinais no código:** `initial={{ x/y: … }}`, `translateX/Y` ou keyframes `slide-in` na entrada de um toast ou banner de variante `success` / `info` / `default`; toaster global (sonner, react-hot-toast, notistack) com animação de slide aplicada a todas as variantes; variante `error` / `destructive` com a mesma cor neutra das demais.
+- **Severidade:** avisa
+- **Verificação:** código
+- **Exceções:** toast com ação limitada no tempo ("Desfazer" depois de excluir) pode deslizar, porque a pessoa precisa notá-lo antes que a ação expire.
+- **Fonte:** https://uxmag.com/articles/why-skilled-ux-designers-are-like-magicians — paráfrase (deslocar a atenção num evento crítico com cor saturada e movimento periférico; o exemplo do toast vermelho de conexão); o limite de 150ms e a divisão crítico × informativo são inferência minha
+
 ## Aposentados
 
 _Nenhum._

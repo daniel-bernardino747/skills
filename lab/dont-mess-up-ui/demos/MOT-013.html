@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MOT-013 — demo</title>
+<link rel="stylesheet" href="_kit.css">
+<style>
+  .stage { min-height: 170px; display: flex; align-items: center; }
+  .view { width: 100%; border: 1px solid var(--line-strong); border-radius: 10px; padding: 12px; background: var(--bg);
+    display: flex; flex-direction: column; gap: 10px; }
+  .top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .nav { display: flex; gap: 10px; font-size: 12.5px; color: var(--muted); align-items: center; }
+  .badge { font: 600 11px/18px "Geist Mono", ui-monospace, monospace; padding: 0 6px; border-radius: 999px;
+    background: var(--accent); color: var(--on-accent); display: inline-block; }
+  .bell { position: relative; width: 22px; height: 22px; color: var(--object); }
+  .dot { position: absolute; top: 0; right: 0; width: 8px; height: 8px; border-radius: 50%; background: var(--bad); }
+  .lines span { display: block; height: 6px; border-radius: 3px; background: var(--line-strong); margin: 0 0 6px; }
+  .lines span:nth-child(2) { width: 70%; }
+  .lines.sk span { background: linear-gradient(90deg, var(--line) 0%, var(--line-strong) 50%, var(--line) 100%); background-size: 200% 100%; }
+  .b { align-self: flex-start; font: 600 13px/1 "Geist", ui-sans-serif, sans-serif; border-radius: 8px; padding: 9px 13px;
+    background: var(--accent); color: var(--on-accent); border: 0; }
+
+  @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.18); } }
+  @keyframes bounce { 0%, 100% { transform: translateY(0); } 40% { transform: translateY(-5px); } 60% { transform: translateY(0); } }
+  @keyframes ring { 0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--bad) 60%, transparent); } 60% { box-shadow: 0 0 0 7px transparent; } }
+  @keyframes shimmer { from { background-position: 100% 0; } to { background-position: -100% 0; } }
+
+  .run .pulse { animation: pulse calc(1200ms * var(--slow)) ease-in-out infinite; }
+  .run .bounce { animation: bounce calc(1000ms * var(--slow)) ease-in-out infinite; }
+  .run .ring { animation: ring calc(1400ms * var(--slow)) ease-out infinite; }
+  .run .sk span { animation: shimmer calc(1400ms * var(--slow)) linear infinite; }
+</style>
+</head>
+<body>
+<div class="grid">
+  <div class="cell"><h3>Um chamariz</h3><span class="tag ok">segue</span>
+    <div class="stage"><div class="view">
+      <div class="top"><div class="nav">Projetos <span class="badge pulse">Novo</span></div>
+        <div class="bell"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a2.5 2.5 0 0 0 2.4-2h-4.8a2.5 2.5 0 0 0 2.4 2zm7-6V11a7 7 0 0 0-5.5-6.8V3a1.5 1.5 0 0 0-3 0v1.2A7 7 0 0 0 5 11v5l-2 2v1h18v-1z"/></svg><span class="dot"></span></div></div>
+      <div class="lines"><span></span><span></span></div><button class="b">Criar projeto</button></div></div>
+    <div class="cap">1 loop (pulse) · o resto parado</div></div>
+  <div class="cell"><h3>Três chamarizes</h3><span class="tag bad">viola</span>
+    <div class="stage"><div class="view">
+      <div class="top"><div class="nav">Projetos <span class="badge pulse">Novo</span></div>
+        <div class="bell"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a2.5 2.5 0 0 0 2.4-2h-4.8a2.5 2.5 0 0 0 2.4 2zm7-6V11a7 7 0 0 0-5.5-6.8V3a1.5 1.5 0 0 0-3 0v1.2A7 7 0 0 0 5 11v5l-2 2v1h18v-1z"/></svg><span class="dot ring"></span></div></div>
+      <div class="lines"><span></span><span></span></div><button class="b bounce">Criar projeto</button></div></div>
+    <div class="cap">pulse + ring + bounce, todos infinite</div></div>
+  <div class="cell"><h3>Chamariz + carregamento</h3><span class="tag ok">segue</span>
+    <div class="stage"><div class="view">
+      <div class="top"><div class="nav">Projetos <span class="badge pulse">Novo</span></div>
+        <div class="bell"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a2.5 2.5 0 0 0 2.4-2h-4.8a2.5 2.5 0 0 0 2.4 2zm7-6V11a7 7 0 0 0-5.5-6.8V3a1.5 1.5 0 0 0-3 0v1.2A7 7 0 0 0 5 11v5l-2 2v1h18v-1z"/></svg><span class="dot"></span></div></div>
+      <div class="lines sk"><span></span><span></span></div><button class="b">Criar projeto</button></div></div>
+    <div class="cap">pulse + shimmer de skeleton · exceção</div></div>
+</div>
+<script>window.DEMO = { controls: ['slow'] };</script>
+<script src="_kit.js"></script>
+</body>
+</html>
